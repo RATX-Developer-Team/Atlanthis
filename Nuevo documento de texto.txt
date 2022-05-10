@@ -1,0 +1,7 @@
+        <h:form>
+            <h:inputText styleClass="secreto" value="#{beanArticulo.codigo}"/> 
+            <h:commandButton styleClass="secreto1" value="Enviar" actionListener="#{beanArticulo.cargar()}"/>
+        </h:form>
+        
+        <h:outputText value="#{beanArticulo.articulo.titular}" rendered="#{not empty beanArticulo.articulo}"/>
+        <h:outputText value="#{beanArticulo.articulo.descripcion}" rendered="#{not empty beanArticulo.articulo}"/>

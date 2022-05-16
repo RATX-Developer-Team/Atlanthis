@@ -1,0 +1,83 @@
+/*CSS Pagina Principal fuera de ser un usuario registrado*/
+@font-face {
+    font-family: 'Pirate';
+    src: url('../fonts/PirateRegular.woff2') format('woff2'),
+    url('../fonts/PirateRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    overflow: hidden;
+}
+
+.videoPrincipal, .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.contenido {
+    justify-content: center !important;
+    position: relative;
+    z-index: 2 !important;
+}
+
+.textoPrincipal {
+    font-family: Pirate;
+    color: black !important;
+}
+
+/*MAIN CSS*/
+.fondo {
+    height: 10px;
+    background-color: #016341 !important;
+}
+
+.borde {
+    border-bottom: 1px solid black;
+}
+
+.fondoBarra {
+    background-color: var(--bs-gray-100);
+}
+
+.active {
+    color: #016341 !important;
+    font-weight: bold !important;
+}
+
+.btn-fondoPer {
+    color: #fff!important;
+    background-color: #016341!important;
+    border-color: #016341!important;
+}
+
+.btn-fondoPer:hover {
+    color: #fff!important;
+    background-color: #005235!important;
+    border-color: #005235!important;
+}
+
+.form-control:focus {
+    color: #212529!important;
+    background-color: #fff!important;
+    border-color: #005235!important;
+    outline: 0!important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 83, 28, 0.25)!important;
+}

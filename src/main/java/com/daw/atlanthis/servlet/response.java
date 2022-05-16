@@ -1,8 +1,5 @@
 package com.daw.atlanthis.servlet;
 
-import com.daw.atlanthis.DTO.Articulo;
-import com.daw.atlanthis.DTO.Categorias;
-import com.daw.atlanthis.DTO.Subcategorias;
 import com.daw.atlanthis.utils.Utilidades;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -28,36 +25,9 @@ public class response extends HttpServlet {
             String categorias = request.getParameter("categorias");
             String articulo = request.getParameter("articulo");
             if (categorias!=null) {
-                if (categorias.equals("todas")) {
-                    obj = new JSONObject();
-                    List<Categorias> v = utils_.getCtrCategorias().findCategoriasEntities();
-                    for (Categorias k:v) {
-                        Categorias x = k;
-                        obj.put(x.getCodCategoria()+"", x.getCategoria());
-                    }
-                } else if(categorias.equals("sub")) {
-                    obj = new JSONObject();
-                    List<Subcategorias> v = utils_.getCtrSubcategorias().findSubcategoriasEntities();
-                    for (Subcategorias k:v) {
-                        Subcategorias x = k;
-                        JSONObject obj2 = new JSONObject();
-                        obj2.put(x.getNombre(), x.getCodCategoria().getCodCategoria()+"");
-                        obj.put(x.getCodSubcategoria()+"", obj2.toString());
-                    }
-                }
+               
             } else if (articulo!=null) {
-                if (articulo.equals("todos")) {
-                    obj = new JSONObject();
-                    List<Articulo> v = utils_.getCtrArticulo().findArticuloEntities();
-                    for (Articulo k:v) {
-                        Articulo x = k;                        
-                        obj.put(x.getCodArt()+"", x.toString());
-                    }
-                } else {
-                    obj = new JSONObject();
-                    Articulo x = utils_.getCtrArticulo().findArticulo(Integer.parseInt(articulo));
-                    obj.put(x.getCodArt()+"", x.toString());
-                }
+            
             }
             
             PrintWriter out = response.getWriter();

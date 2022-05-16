@@ -9,10 +9,6 @@
         <servlet-name>response</servlet-name>
         <servlet-class>com.daw.atlanthis.servlet.response</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>puente</servlet-name>
-        <servlet-class>com.daw.atlanthis.servlet.puente</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -21,16 +17,12 @@
         <servlet-name>response</servlet-name>
         <url-pattern>/response</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>puente</servlet-name>
-        <url-pattern>/puente</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/inicio.jsp</welcome-file>
+        <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

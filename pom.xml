@@ -51,6 +51,12 @@
             <artifactId>json</artifactId>
             <version>20211205</version>
         </dependency>
+        <!-- https://www.primefaces.org/showcase/getstarted.xhtml?jfwid=0f928 -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>11.0.0</version>
+        </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.core</artifactId>

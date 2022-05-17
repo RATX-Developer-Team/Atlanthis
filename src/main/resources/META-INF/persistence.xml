@@ -10,6 +10,9 @@
     <class>com.daw.atlanthis.DTO.Respuestas</class>
     <class>com.daw.atlanthis.DTO.Articulo</class>
     <class>com.daw.atlanthis.DTO.Newletter</class>
+    <class>com.daw.atlanthis.DTO.Usuarios</class>
+    <class>com.daw.atlanthis.DTO.Hilos</class>
+    <class>com.daw.atlanthis.DTO.Newsletter</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dbforo?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

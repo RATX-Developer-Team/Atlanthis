@@ -1,7 +1,7 @@
 /*MAIN CSS*/
 .fondo {
     height: 10px;
-    background-color: #016341 !important;
+    background-color: #66BCF2 !important;
 }
 
 .borde {
@@ -13,26 +13,26 @@
 }
 
 .active {
-    color: #016341 !important;
+    color: #66BCF2 !important;
     font-weight: bold !important;
 }
 
 .btn-fondoPer {
     color: #fff!important;
-    background-color: #016341!important;
-    border-color: #016341!important;
+    background-color: #66BCF2!important;
+    border-color: #66BCF2!important;
 }
 
 .btn-fondoPer:hover {
     color: #fff!important;
-    background-color: #005235!important;
-    border-color: #005235!important;
+    background-color: #66BCF2!important;
+    border-color: #66BCF2!important;
 }
 
 .form-control:focus {
-    color: #212529!important;
+    color: #66BCF2!important;
     background-color: #fff!important;
-    border-color: #005235!important;
+    border-color: #66BCF2!important;
     outline: 0!important;
-    box-shadow: 0 0 0 0.25rem rgba(0, 83, 28, 0.25)!important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 22, 83, 0.25)!important;
 }

@@ -1,5 +1,11 @@
 package com.daw.atlanthis.utils;
 
+import com.daw.atlanthis.DAO.CategoriasJpaController;
+import com.daw.atlanthis.DAO.HilosJpaController;
+import com.daw.atlanthis.DAO.NewsletterJpaController;
+import com.daw.atlanthis.DAO.RespuestasJpaController;
+import com.daw.atlanthis.DAO.SubcategoriasJpaController;
+import com.daw.atlanthis.DAO.UsuariosJpaController;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -20,6 +26,12 @@ import org.apache.commons.codec.binary.Base64;
 
 public class Utilidades  {
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("atlanthisPU");
+    private final CategoriasJpaController ctrCategorias = new CategoriasJpaController(emf);
+    private final HilosJpaController ctrHilos = new HilosJpaController(emf);
+    private final NewsletterJpaController ctrNewsletter = new NewsletterJpaController(emf);
+    private final RespuestasJpaController ctrRespuestas = new RespuestasJpaController(emf);
+    private final SubcategoriasJpaController ctrSubcategorias = new SubcategoriasJpaController(emf);
+    private final UsuariosJpaController ctrUsuarios = new UsuariosJpaController(emf);
     
     private static final String UNICODE_FORMAT = "UTF8";
     public static final String DESEDE_ENCRYPTION_SCHEME = "DESede";
@@ -44,6 +56,30 @@ public class Utilidades  {
         this.ks = new DESedeKeySpec(arrayBytes);
         this.key = skf.generateSecret(ks);
         this.cipher = Cipher.getInstance(myEncryptionScheme);
+    }
+
+    public CategoriasJpaController getCtrCategorias() {
+        return ctrCategorias;
+    }
+
+    public HilosJpaController getCtrHilos() {
+        return ctrHilos;
+    }
+
+    public NewsletterJpaController getCtrNewsletter() {
+        return ctrNewsletter;
+    }
+
+    public RespuestasJpaController getCtrRespuestas() {
+        return ctrRespuestas;
+    }
+
+    public SubcategoriasJpaController getCtrSubcategorias() {
+        return ctrSubcategorias;
+    }
+
+    public UsuariosJpaController getCtrUsuarios() {
+        return ctrUsuarios;
     }
     
     public String getMail() {

@@ -2,6 +2,8 @@
 
 /*Configuracion general*/
 let Config = {
+    placeholder_userlogin: 'Email',
+    placeholder_passlogin: 'Contraseña'
 }
 
 /*
@@ -10,6 +12,19 @@ let Config = {
 ** Autores: Alejandro Mendoza Zambrana
 */
 var UTILS__ = (function() {
+
+
+    /*
+        ** Descripcion: Metodo que rellena los placeholder que no se pueden rellenar por culpa de JSF.
+        ** Entrada: String / nombre de la pagina donde se va a aplicar
+        ** Salida: /
+    */
+    function placeholderFix(v) {
+        if (v==='inicio') {
+            $('.user_login').attr('placeholder', Config.placeholder_userlogin)
+            $('.passwd_login').attr('placeholder', Config.placeholder_passlogin)
+        }
+    }
 
     /*
         ** Descripcion: Metodo que oculta la caja del mensaje de error en el login cuando este vacio.
@@ -25,6 +40,7 @@ var UTILS__ = (function() {
         ** Metodos publicos
     */
     return {
+        placeholderFix:placeholderFix,
         ocultarError:ocultarError
     }
 })()

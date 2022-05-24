@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
@@ -20,7 +19,7 @@
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
         <h:outputStylesheet name="css/inicio.css"/>
-        <link rel="shortcut icon" type="image/x-icon" href="../img/assets/FAVICON.ico"/>
+        <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/RATX-Developer-Team/Atlanthis/main/dise%C3%B1o/AtlanthisFavicon48.ico"/>
     </h:head>
 
     <h:body>
@@ -37,14 +36,14 @@
             <h:form styleClass="container d-flex flex-column align-items-center">
                 <div class="input-group mt-3 flex-nowrap w-inputs">
                     <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-envelope"></i></span>
-                    <p:inputText value="#{beanLogin.email}" styleClass="form-control campo" placeholder="Email"/>
+                    <h:inputText value="#{beanLogin.email}" styleClass="form-control campo user_login"/>
                 </div>
                 <div class="input-group mt-1 flex-nowrap w-inputs">
                     <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
-                    <p:password value="#{beanLogin.passwd}" styleClass="form-control campo" placeholder="Contraseña"/>
+                    <h:inputSecret value="#{beanLogin.passwd}" styleClass="form-control campo passwd_login"/>
                 </div>
                 
-                <h:commandButton value="Entrar" action="#{beanLogin.esUsuario()}" styleClass="w-inputs btn mt-4 btn-outline-personalizado" onclick="PF('dlg1').show()"/>
+                <h:commandButton value="Entrar" action="#{beanLogin.esUsuario()}" styleClass="w-inputs btn mt-4 btn-outline-personalizado"/>
                 <p class="w-inputs">¿No tienes cuenta? <br></br> Pulsa <p:link href="index.xhtml">aquí</p:link> para registrarte.</p>
             </h:form>
             <h:outputText styleClass="errorLogin" value="#{beanLogin.error}" />

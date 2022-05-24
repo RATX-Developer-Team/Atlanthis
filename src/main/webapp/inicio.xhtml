@@ -15,6 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
         <h:outputScript name="js/ipl.js"/>
         <h:outputScript name="js/utilidades.js"/>
+        <h:outputScript name="js/inicio.js"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
@@ -33,20 +34,20 @@
             </div>
             <h1 class="h1 display-1 textoPrincipal">Atlanthis</h1>
             <!-- TODO convertir todos los campos a JSF cuando se termine el mockup -->
-            <form class="container d-flex flex-column align-items-center" action="#" method="POST">
+            <h:form styleClass="container d-flex flex-column align-items-center">
                 <div class="input-group mt-3 flex-nowrap w-inputs">
                     <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-envelope"></i></span>
-                    <input type="text" class="form-control campo" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping"/>
+                    <p:inputText value="#{beanLogin.email}" styleClass="form-control campo" placeholder="Email"/>
                 </div>
                 <div class="input-group mt-1 flex-nowrap w-inputs">
                     <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
-                    <input type="password" class="form-control campo" placeholder="Contraseña" aria-label="Password" aria-describedby="addon-wrapping"/>
+                    <p:password value="#{beanLogin.passwd}" styleClass="form-control campo" placeholder="Contraseña"/>
                 </div>
                 
-                <button class="w-inputs btn mt-4 btn-outline-personalizado" type="submit">Entrar</button>
-                <p class="w-inputs">¿No tienes cuenta? <br/> Pulsa <p:link href="index.xhtml">aquí</p:link> para registrarte.</p>
-            </form>
-            <h4><h:outputText value="#{beanLogin.error}" /></h4>
+                <h:commandButton value="Entrar" action="#{beanLogin.esUsuario()}" styleClass="w-inputs btn mt-4 btn-outline-personalizado" onclick="PF('dlg1').show()"/>
+                <p class="w-inputs">¿No tienes cuenta? <br></br> Pulsa <p:link href="index.xhtml">aquí</p:link> para registrarte.</p>
+            </h:form>
+            <h:outputText styleClass="errorLogin" value="#{beanLogin.error}" />
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     </h:body>

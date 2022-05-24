@@ -12,6 +12,15 @@
     overflow: hidden;
 }
 
+.errorLogin {
+    position: absolute!important;
+    bottom: 22.5em!important;
+    color: #D5E7F2!important;
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    padding: 14px!important;
+    border-radius: 4px!important;
+}
+
 .videoPrincipal, .overlay {
     position: absolute;
     top: 50%;

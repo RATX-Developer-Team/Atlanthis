@@ -1,6 +1,6 @@
 /*VARIABLES GLOBALES*/
 
-/*Configuracion general de la carga dinamica*/
+/*Configuracion general*/
 let Config = {
 }
 
@@ -11,10 +11,20 @@ let Config = {
 */
 var UTILS__ = (function() {
 
-    /**
-    *  Metodos publicos
+    /*
+        ** Descripcion: Metodo que oculta la caja del mensaje de error en el login cuando este vacio.
+        ** Entrada: /
+        ** Salida: /
+    */
+    function ocultarError() {
+        let local_ = $('.errorLogin')
+        local_.html()=="" || local_.html()==null? local_.hide():local_.show()
+    }
+
+    /*
+        ** Metodos publicos
     */
     return {
-        null:null
+        ocultarError:ocultarError
     }
 })()

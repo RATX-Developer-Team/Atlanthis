@@ -47,6 +47,9 @@ public class beanLogin {
     }
 
     public Usuarios getUsu() {
+        if (this.usu==null) {
+            redireccionar("inicio.xhtml");
+        }
         return usu;
     }
 
@@ -98,7 +101,7 @@ public class beanLogin {
     public void logout() {
         ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
         ((HttpSession) ctx.getSession(false)).invalidate();
-        redireccionar("index.xhtml");
+        redireccionar("inicio.xhtml");
     }
     
     private static void redireccionar (String url) {

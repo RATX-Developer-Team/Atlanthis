@@ -2,10 +2,11 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="inicio.xhtml" x="271" y="32" zoom="true"/>
-        <Node id="index.xhtml" x="34" y="32" zoom="true"/>
+        <Node id="inicio.xhtml" x="99" y="348" zoom="true"/>
+        <Node id="index.xhtml" x="177" y="96" zoom="true"/>
+        <Node id="fix.xhtml" x="826" y="77" zoom="true"/>
         <Node id="email.html" x="823" y="32" zoom="true"/>
-        <Node id="templates/template.xhtml" x="507" y="32" zoom="true"/>
+        <Node id="templates/template.xhtml" x="830" y="131" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

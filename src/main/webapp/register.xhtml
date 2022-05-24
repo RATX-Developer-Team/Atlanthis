@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Atlanthis | Foro líder de información en español</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+        <h:outputScript name="js/ipl.js"/>
+        <h:outputScript name="js/utilidades.js"/>
+        <h:outputScript name="js/register.js"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+        <h:outputStylesheet name="css/register.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/RATX-Developer-Team/Atlanthis/main/dise%C3%B1o/AtlanthisFavicon48.ico"/>
+    </h:head>
+
+    <h:body>
+        <div class="overlay2"></div>
+        <div class="overlay"></div>
+        <div class="container-fluid h-100 d-flex flex-column justify-content-center align-items-center contenido">
+            <p:link href="inicio.xhtml" styleClass="quitarDecoracion"><h1 class="h1 display-1 textoPrincipal">Atlanthis</h1></p:link>
+            <h:form styleClass="container d-flex flex-column align-items-center">
+                <div class="input-group mt-3 flex-nowrap w-inputs">
+                    <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
+                    <h:inputText value="#{beanRegister.nombre}" styleClass="form-control campo name_register"/>
+                </div>
+                <div class="input-group mt-1 flex-nowrap w-inputs">
+                    <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
+                    <h:inputText value="#{beanRegister.apellidos}" styleClass="form-control campo apellidos_register"/>
+                </div>
+                <div class="input-group mt-3 flex-nowrap w-inputs">
+                    <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-envelope"></i></span>
+                    <h:inputText value="#{beanRegister.email}" styleClass="form-control campo email_register"/>
+                </div>
+                <div id="emailHelpBlock" class="form-text w-inputs">
+                    El email introducido debe contener un patrón válido y ser real, para garantizar la comunicación con usted.
+                </div>
+                <div class="input-group mt-3 flex-nowrap w-inputs">
+                    <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
+                    <h:inputSecret value="#{beanRegister.passwd}" styleClass="form-control campo passwd_register"/>
+                </div>
+                <div id="passwordHelpBlock" class="form-text w-inputs">
+                    Tu contraseña debe tener entre 8-20 caractéres, contener números y letras sin espacios o carácter especial.
+                </div>
+                <div class="input-group mt-3 flex-nowrap w-inputs">
+                    <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-calendar"></i></span>
+                    <h:inputText value="#{beanRegister.fecha_naci}" styleClass="form-control campo fechanaci_register"/>
+                </div>
+                <div class="input-group mt-3 flex-nowrap w-inputs">
+                    <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-earth-africa"></i></span>
+                    <h:selectOneMenu required="" value="#{beanRegister.pais}" styleClass="form-control campo pais_register">
+                        <f:selectItem itemValue="germany" itemLabel="Alemania"/>
+                        <f:selectItem itemValue="china" itemLabel="China"/>
+                        <f:selectItem itemValue="spain" itemLabel="España"/>
+                        <f:selectItem itemValue="usa" itemLabel="Estados Unidos"/>
+                        <f:selectItem itemValue="france" itemLabel="Francia"/>
+                    </h:selectOneMenu>
+                </div>
+                <h:commandButton value="Registrarte!" action="#{beanRegister.guardarUsuario()}" styleClass="w-inputs btn mt-4 btn-outline-personalizado"/>
+            </h:form>
+            <h:outputText styleClass="errorLogin" value="#{beanLogin.error}" />
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>

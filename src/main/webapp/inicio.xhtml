@@ -23,16 +23,13 @@
     </h:head>
 
     <h:body>
-        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="videoPrincipal">
-            <source src="https://raw.githubusercontent.com/RATX-Developer-Team/Atlanthis/main/src/main/webapp/resources/video/video.mp4" type="video/mp4"/>
-        </video>
+        <div class="overlay2"></div>
         <div class="overlay"></div>
         <div class="container-fluid h-100 d-flex flex-column justify-content-center align-items-center contenido">
             <div class="container d-flex flex-row align-items-center">
                 <p:graphicImage name="img/logo.png" class="img-responsive m-auto" alt="Logotipo del foro Atlanthis."/>
             </div>
             <h1 class="h1 display-1 textoPrincipal">Atlanthis</h1>
-            <!-- TODO convertir todos los campos a JSF cuando se termine el mockup -->
             <h:form styleClass="container d-flex flex-column align-items-center">
                 <div class="input-group mt-3 flex-nowrap w-inputs">
                     <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-envelope"></i></span>
@@ -44,7 +41,7 @@
                 </div>
                 
                 <h:commandButton value="Entrar" action="#{beanLogin.esUsuario()}" styleClass="w-inputs btn mt-4 btn-outline-personalizado"/>
-                <p class="w-inputs">¿No tienes cuenta? <br></br> Pulsa <p:link href="index.xhtml">aquí</p:link> para registrarte.</p>
+                <p class="w-inputs">¿No tienes cuenta? <br></br> Pulsa <p:link href="register.xhtml">aquí</p:link> para registrarte.</p>
             </h:form>
             <h:outputText styleClass="errorLogin" value="#{beanLogin.error}" />
         </div>

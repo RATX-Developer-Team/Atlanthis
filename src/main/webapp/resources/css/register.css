@@ -12,6 +12,30 @@
     overflow: hidden;
 }
 
+a.quitarDecoracion:hover {
+    text-decoration: none !important;
+}
+
+.input-group>.form-control, .input-group>.form-select {
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    backdrop-filter: blur(10px) !important;
+    color: #D5E7F2 !important;
+    border: 2px solid rgba(0, 0, 0, 0.534) !important;
+    transition: border-color 0.3s linear;
+}
+
+select.form-control:focus {
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    backdrop-filter: blur(10px) !important;
+    color: #D5E7F2 !important;
+    border: 2px solid #D5E7F2 !important;
+    transition: border-color 0.3s linear;
+}
+
+.form-text {
+    color: #D5E7F2 !important;
+}
+
 .errorLogin {
     position: absolute!important;
     bottom: 22.5em!important;
@@ -47,6 +71,7 @@
 
 .contenido {
     justify-content: center !important;
+    margin-top: 150px;
     position: relative;
     z-index: 2 !important;
 }

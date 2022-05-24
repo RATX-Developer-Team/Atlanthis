@@ -3,7 +3,12 @@
 /*Configuracion general*/
 let Config = {
     placeholder_userlogin: 'Email',
-    placeholder_passlogin: 'Contraseña'
+    placeholder_passlogin: 'Contraseña',
+    placeholder_fecharegister: 'Fecha de nacimiento',
+    placeholder_apellidosregister: 'Apellidos',
+    placeholder_nombreregister: 'Nombre',
+    pattern_email: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$',
+    pattern_passwd: '.{8,}'
 }
 
 /*
@@ -23,7 +28,22 @@ var UTILS__ = (function() {
         if (v==='inicio') {
             $('.user_login').attr('placeholder', Config.placeholder_userlogin)
             $('.passwd_login').attr('placeholder', Config.placeholder_passlogin)
+        } else if (v==='register') {
+            $('.name_register').attr('placeholder', Config.placeholder_nombreregister)
+            $('.apellidos_register').attr('placeholder', Config.placeholder_apellidosregister)
+            $('.email_register').attr('placeholder', Config.placeholder_userlogin)
+            $('.email_register').attr('pattern', Config.pattern_email)
+            $('.passwd_register').attr('placeholder', Config.placeholder_passlogin)
+            $('.passwd_register').attr('pattern', Config.pattern_passwd)
+            $('.fechanaci_register').attr('placeholder', Config.placeholder_fecharegister)
+            $('.fechanaci_register').attr('readonly', false).datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1920:2021"
+            })
         }
+        $('input').prop('required',true);
     }
 
     /*

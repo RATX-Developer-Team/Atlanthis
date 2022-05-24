@@ -6,6 +6,7 @@ import com.daw.atlanthis.DAO.NewsletterJpaController;
 import com.daw.atlanthis.DAO.RespuestasJpaController;
 import com.daw.atlanthis.DAO.SubcategoriasJpaController;
 import com.daw.atlanthis.DAO.UsuariosJpaController;
+import com.daw.atlanthis.DTO.Usuarios;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -13,6 +14,7 @@ import java.security.spec.InvalidKeySpecException;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.security.spec.KeySpec;
+import java.util.List;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -45,7 +47,7 @@ public class Utilidades  {
 
     private final String STMP_host = "smtp-mail.outlook.com";
     private final String STMP_port = "587";
-    private final String STMP_user = "periodicoatlanthis@outlook.com";
+    private final String STMP_user = "atlanthisdaw@outlook.com";
     private final String STMP_pass = "NxjzMahP4agq";
 
     @ManagedProperty("#{beanLogin.email}")
@@ -105,7 +107,19 @@ public class Utilidades  {
     public String getSTMP_pass() {
         return STMP_pass;
     }
-        
+    
+    public int lastId() {
+        List<Usuarios> v = ctrUsuarios.findUsuariosEntities();
+        int i=0;
+        for(Usuarios o:v) {
+            Usuarios x = o;
+            if (x.getCodUsuario()>i) {
+                i = x.getCodUsuario();
+            }
+        }
+        return i;
+    }
+    
     public String encrypt(String unencryptedString) {
         String encryptedString = null;
         try {

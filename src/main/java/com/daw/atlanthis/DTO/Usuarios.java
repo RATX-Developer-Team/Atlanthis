@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre"),
     @NamedQuery(name = "Usuarios.findByApellidos", query = "SELECT u FROM Usuarios u WHERE u.apellidos = :apellidos"),
     @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password"),
+    @NamedQuery(name = "Usuarios.findByImagen", query = "SELECT u FROM Usuarios u WHERE u.imagen = :imagen"),
     @NamedQuery(name = "Usuarios.findByPermiso", query = "SELECT u FROM Usuarios u WHERE u.permiso = :permiso")})
 public class Usuarios implements Serializable {
 
@@ -67,6 +68,11 @@ public class Usuarios implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "imagen")
+    private String imagen;
     @Column(name = "permiso")
     private Integer permiso;
 
@@ -77,7 +83,7 @@ public class Usuarios implements Serializable {
         this.email = email;
     }
 
-    public Usuarios(String email, int codUsuario, Date fechaNacimiento, String pais, String nombre, String apellidos, String password) {
+    public Usuarios(String email, int codUsuario, Date fechaNacimiento, String pais, String nombre, String apellidos, String password, String imagen) {
         this.email = email;
         this.codUsuario = codUsuario;
         this.fechaNacimiento = fechaNacimiento;
@@ -85,6 +91,7 @@ public class Usuarios implements Serializable {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.password = password;
+        this.imagen = imagen;
     }
 
     public String getEmail() {
@@ -141,6 +148,14 @@ public class Usuarios implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Integer getPermiso() {

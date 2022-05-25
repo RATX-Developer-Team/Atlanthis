@@ -1,7 +1,7 @@
 /*MAIN CSS*/
 .fondo {
     height: 10px;
-    background-color: #66BCF2 !important;
+    background-color: #D5E7F2 !important;
 }
 
 .borde {
@@ -9,30 +9,92 @@
 }
 
 .fondoBarra {
-    background-color: var(--bs-gray-100);
+    background-color: #025373;
 }
 
 .active {
-    color: #66BCF2 !important;
+    color: #D5E7F2 !important;
     font-weight: bold !important;
 }
 
 .btn-fondoPer {
-    color: #fff!important;
-    background-color: #66BCF2!important;
-    border-color: #66BCF2!important;
+    color: #D5E7F2!important;
+    background-color: #025373!important;
+    border-color: #025373!important;
 }
 
 .btn-fondoPer:hover {
-    color: #fff!important;
-    background-color: #66BCF2!important;
-    border-color: #66BCF2!important;
+    color: #D5E7F2!important;
+    background-color: #025373!important;
+    border-color: #025373!important;
 }
 
 .form-control:focus {
-    color: #66BCF2!important;
-    background-color: #fff!important;
-    border-color: #66BCF2!important;
+    color: #D5E7F2!important;
+    background-color: black!important;
+    border-color: #D5E7F2!important;
     outline: 0!important;
     box-shadow: 0 0 0 0.25rem rgba(0, 22, 83, 0.25)!important;
+}
+
+input.campo {
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    backdrop-filter: blur(10px) !important;
+    color: #D5E7F2 !important;
+    border: 2px solid rgba(0, 0, 0, 0.534) !important;
+    transition: border-color 0.3s linear;
+}
+
+input::placeholder {
+    color: #6b7479 !important;
+}
+
+p.w-inputs {
+    margin-top: 20px;
+    text-align: center;
+    color: #D5E7F2 !important;
+    width: 330px;
+    max-width: 330px;
+}
+
+input.campo:focus {
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    backdrop-filter: blur(10px) !important;
+    color: #D5E7F2 !important;
+    border: 2px solid #D5E7F2 !important;
+    transition: border-color 0.3s linear;
+}
+
+span.campo {
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    backdrop-filter: blur(10px) !important;
+    color: #D5E7F2 !important;
+    border: none !important;
+}
+
+
+.btn-outline-personalizado{
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    backdrop-filter: blur(10px) !important;
+    color:#D5E7F2 !important;
+    border: 1px solid #D5E7F2 !important;
+}
+
+div ul li a.nav-link {
+    color: rgba(255,255,255,.65) !important;
+}
+
+div ul li a.nav-link:hover {
+    color: rgba(255,255,255,.85) !important;
+}
+
+.btn-outline-personalizado:hover{
+    color:rgb(0, 0, 0)!important;
+    background-color:#D5E7F2!important;
+    border-color:#D5E7F2!important;
+    transition: background-color 0.3s linear;
+}
+
+.btn-check:focus+.btn-outline-personalizado,.btn-outline-personalizado:focus{
+    box-shadow:0 0 0 .25rem rgba(59, 59, 59, 0.5)!important;
 }

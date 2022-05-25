@@ -98,10 +98,11 @@ public class beanLogin {
         return error="Email y Contraseña Incorrectos";
     }
 
-    public void logout() {
+    public String logout() {
         ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
         ((HttpSession) ctx.getSession(false)).invalidate();
         redireccionar("inicio.xhtml");
+        return "logout";
     }
     
     private static void redireccionar (String url) {

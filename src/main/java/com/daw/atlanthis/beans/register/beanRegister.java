@@ -109,7 +109,8 @@ public class beanRegister {
                     pais,
                     nombre,
                     apellidos,
-                    utils_.encrypt(passwd)
+                    utils_.encrypt(passwd),
+                    "default.png"
             );
             utils_.getCtrUsuarios().create(v);
             String motivo = "Bienvenido a Atlanthis";

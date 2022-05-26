@@ -1,3 +1,7 @@
+:root {
+    --colorPrincipal: #224e68;
+}
+
 /*MAIN CSS*/
 .fondo {
     height: 10px;
@@ -7,9 +11,38 @@
 .borde {
     border-bottom: 1px solid black;
 }
+body {
+    background-color: #F6F8FF !important;
+}
+.tituloCategoria {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin: 0 !important;
+    color: white !important;
+    font-weight: normal !important;
+    background-color: var(--colorPrincipal) !important;
+    border-bottom-left-radius: 20px;
+}
+
+.fotoPerfil {
+    border-radius: 100%;
+}
+
+.subcategoria {
+    background: rgb(255, 255, 255);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.categoria .subcategoria:nth-child(odd) {
+    background: rgba(73, 89, 96, 0.06);
+}
 
 .fondoBarra {
-    background-color: #025373;
+    background-color: var(--colorPrincipal);
 }
 
 .active {
@@ -19,14 +52,14 @@
 
 .btn-fondoPer {
     color: #D5E7F2!important;
-    background-color: #025373!important;
-    border-color: #025373!important;
+    background-color: var(--colorPrincipal)!important;
+    border-color: var(--colorPrincipal)!important;
 }
 
 .btn-fondoPer:hover {
     color: #D5E7F2!important;
-    background-color: #025373!important;
-    border-color: #025373!important;
+    background-color: var(--colorPrincipal)!important;
+    border-color: var(--colorPrincipal)!important;
 }
 
 .form-control:focus {

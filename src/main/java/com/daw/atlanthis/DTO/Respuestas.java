@@ -154,7 +154,14 @@ public class Respuestas implements Serializable {
 
     @Override
     public String toString() {
-        return "com.daw.atlanthis.DTO.Respuestas[ codRespuesta=" + codRespuesta + " ]";
+        return "{" +
+                "\"codRespuesta\":\"" + codRespuesta + '\"' +
+                ",\"codUsuario\":\"" +codUsuario+ '\"' +
+                ",\"codHilo\":\"" + codHilo + '\"' +
+                ",\"fechaPublic\":\"" + fechaPublic + '\"' +
+                ",\"contenido\":\"" + contenido + '\"' +
+                ",\"votos\":\"" + votos + '\"' +
+                ",\"solucion\":\"" + solucion + '\"' +
+                '}';
     }
-
 }

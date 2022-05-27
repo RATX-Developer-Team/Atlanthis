@@ -185,7 +185,15 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.daw.atlanthis.DTO.Usuarios[ email=" + email + " ]";
+        return "{" +
+                "\"email\":\"" + email + '\"' +
+                ",\"codUsuario\":\"" +codUsuario+ '\"' +
+                ",\"fechaNacimiento\":\"" + fechaNacimiento + '\"' +
+                ",\"pais\":\"" + pais + '\"' +
+                ",\"nombre\":\"" + nombre + '\"' +
+                ",\"apellidos\":\"" + apellidos + '\"' +
+                ",\"imagen\":\"" + imagen + '\"' +
+                ",\"permiso\":\"" + permiso + '\"' +
+                '}';
     }
-
 }

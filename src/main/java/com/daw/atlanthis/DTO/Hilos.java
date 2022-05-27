@@ -176,7 +176,16 @@ public class Hilos implements Serializable {
 
     @Override
     public String toString() {
-        return "com.daw.atlanthis.DTO.Hilos[ codHilo=" + codHilo + " ]";
-    }
-
+        return "{" +
+                "\"codHilo\":\"" + codHilo + '\"' +
+                ",\"codCategoria\":\"" +codCategoria+ '\"' +
+                ",\"codSubcategoria\":\"" + codSubcategoria + '\"' +
+                ",\"titulo\":\"" + titulo + '\"' +
+                ",\"fechaPubli\":\"" + fechaPubli + '\"' +
+                ",\"nVisitas\":\"" + nVisitas + '\"' +
+                ",\"nRespuestas\":\"" + nRespuestas + '\"' +
+                ",\"codUsuario\":\"" + codUsuario + '\"' +
+                ",\"anclado\":\"" + anclado + '\"' +
+                '}';
+    }    
 }

@@ -1,6 +1,15 @@
 package com.daw.atlanthis.DTO;
 
+import com.daw.atlanthis.utils.Utilidades;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.NoSuchPaddingException;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -109,7 +118,11 @@ public class Categorias implements Serializable {
 
     @Override
     public String toString() {
-        return "com.daw.atlanthis.DTO.Categorias[ codCategoria=" + codCategoria + " ]";
+        return "{" +
+                "\"codCategoria\":\"" + codCategoria + '\"' +
+                ",\"titulo\":\"" +titulo+ '\"' +
+                ",\"descripcion\":\"" + descripcion + '\"' +
+                ",\"anclado\":\"" + anclado + '\"' +
+                '}';
     }
-
 }

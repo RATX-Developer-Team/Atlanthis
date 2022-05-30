@@ -5,27 +5,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="./templates/template.xhtml">
+        <ui:define name="scripts">
+            <h:outputScript name="js/index.js"/>
+        </ui:define>
         <ui:define name="contenido">
             <main class="container contenedorCategorias mt-5 mb-5">
-                <div class="categoria">
-                    <h4 class="display-6 fs-4 tituloCategoria">Prueba Titulo1</h4>
-                    <div class="subcategoria d-flex flex-row justify-content-between">
-                        <div class="d-flex flex-column">
-                            <h4 class="display-6 fs-4">Prueba Titulo subcategoria</h4>
-                            <h5 class="display-6 fs-6">Descripcion subcategoria</h5>
-                        </div>
-                        <div class="d-flex flex-row">
-                            <div class="d-flex align-items-center flex-column me-5">
-                                <h4 class="display-6 fs-4">234</h4>
-                                <h5 class="display-6 fs-5">Temas</h5>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h4 class="display-6 fs-4">Titulo del hilo</h4>
-                                <h5 class="display-6 fs-6">Por Alejandro</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </main>
         </ui:define>
     </ui:composition>

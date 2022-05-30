@@ -17,10 +17,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@WebServlet(urlPatterns={"/response"}, asyncSupported=true)
 public class response extends HttpServlet {
     private JSONObject obj = new JSONObject();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

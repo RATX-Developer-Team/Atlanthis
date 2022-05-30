@@ -1,4 +1,10 @@
 /*VARIABLES GLOBALES*/
+let JSON_ = {
+    categorias:{},
+    subcategorias:{},
+    hilos:{},
+    usuarios:{}
+}
 
 /*Configuracion general*/
 let Config = {
@@ -18,6 +24,52 @@ let Config = {
 */
 var UTILS__ = (function() {
 
+    /*
+        ** Descripcion: Metodo que carga el JSON principal.
+        ** Entrada: auxobj, Respuesta que tiene que obtener en forma de objeto, destino, string que determina el lugar de guardado de la respuesta 
+        ** Salida: /
+    */
+    let response = (auxobj,destino) => {
+        $.getJSON("response", auxobj, function (data) {
+            $.each(data, function(index,v) {
+                JSON_[destino][index] = JSON.parse(v)
+            })
+        })
+    }
+
+    /*
+        ** Descripcion: Metodo que carga obteniendo un JSON la pagina principal.
+        ** Entrada: / 
+        ** Salida: /
+    */
+
+    function cargaIndex() {
+        $.when(
+            response({
+                categorias: 'todas'
+            }, 'categorias'),
+            response({
+                categorias: 'sub'
+            }, 'subcategorias')).done(() => {
+            $('.contenedorCategorias').ready(() => {
+                Object.keys(JSON_.categorias).forEach(function(k) {
+                    let cate_ = categoriaIPL.replaceAll('{0}',JSON_.categorias[k].titulo)
+                                            .replaceAll('{1}','puente?is=c&destino=/categoria.xhtml&codigoCategoria='+JSON_.categorias[k].codCategoria)
+                                            .replaceAll('{2}',JSON_.categorias[k].codCategoria)
+                    $('.contenedorCategorias').append(cate_) 
+                    //3 temas en la subcategoria, 4 Titulo ultimo hilo, 5 Enlace ultimo hilo, 6 Nombre autor, 7 Enlace perfil autor
+                    Object.keys(JSON_.subcategorias).forEach(function(kk) {
+                        if (JSON_.subcategorias[k].codCategoria==JSON_.categorias[k].codCategoria) {
+                            let subcate_ = subcategoriaIPL.replaceAll('{0}',JSON_.subcategorias[k].titulo)
+                                        .replaceAll('{1}','puente?is=sc&destino=/subcategoria.xhtml&codigoSubcategoria='+JSON_.subcategorias[k].codSubcategoria)
+                                        .replaceAll('{2}',JSON_.subcategorias[k].descripcion)
+                            $('.subcategoria'+JSON_.categorias[k].codCategoria).append(subcate_)
+                        }
+                    })
+                })
+            })
+        });
+    }
 
     /*
         ** Descripcion: Metodo que rellena los placeholder que no se pueden rellenar por culpa de JSF.
@@ -61,6 +113,7 @@ var UTILS__ = (function() {
     */
     return {
         placeholderFix:placeholderFix,
-        ocultarError:ocultarError
+        ocultarError:ocultarError,
+        cargaIndex:cargaIndex
     }
 })()

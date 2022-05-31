@@ -126,5 +126,4 @@ public class SubcategoriasJpaController implements Serializable {
             em.close();
         }
     }
-
 }

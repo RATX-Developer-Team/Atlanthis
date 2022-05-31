@@ -5,6 +5,34 @@ let JSON_ = {
     hilos:{},
     usuarios:{}
 }
+let response = (url,auxobj,destino) => {
+    $.getJSON(url, auxobj, function (data) {
+        $.each(data, function(index,v) {
+            JSON_[destino][index] = JSON.parse(v)
+        })
+    })
+}
+
+let getData = () => {
+    response("responseCategorias",{
+        categorias: 'todas'
+    }, 'categorias')
+
+    response("responseSubcategorias",{
+        subcategorias: 'todas'
+    }, 'subcategorias')
+
+    response("responseHilos",{
+        hilos: 'todos'
+    }, 'hilos')
+
+    response("responseUsuarios",{
+        usuario: 'todos'
+    }, 'usuarios')
+
+    return true
+}
+let listo = getData();
 
 /*Configuracion general*/
 let Config = {
@@ -25,50 +53,36 @@ let Config = {
 var UTILS__ = (function() {
 
     /*
-        ** Descripcion: Metodo que carga el JSON principal.
-        ** Entrada: auxobj, Respuesta que tiene que obtener en forma de objeto, destino, string que determina el lugar de guardado de la respuesta 
-        ** Salida: /
-    */
-    let response = (auxobj,destino) => {
-        $.getJSON("response", auxobj, function (data) {
-            $.each(data, function(index,v) {
-                JSON_[destino][index] = JSON.parse(v)
-            })
-        })
-    }
-
-    /*
         ** Descripcion: Metodo que carga obteniendo un JSON la pagina principal.
         ** Entrada: / 
         ** Salida: /
     */
 
     function cargaIndex() {
-        $.when(
-            response({
-                categorias: 'todas'
-            }, 'categorias'),
-            response({
-                categorias: 'sub'
-            }, 'subcategorias')).done(() => {
+        if (listo) {
             $('.contenedorCategorias').ready(() => {
                 Object.keys(JSON_.categorias).forEach(function(k) {
                     let cate_ = categoriaIPL.replaceAll('{0}',JSON_.categorias[k].titulo)
                                             .replaceAll('{1}','puente?is=c&destino=/categoria.xhtml&codigoCategoria='+JSON_.categorias[k].codCategoria)
                                             .replaceAll('{2}',JSON_.categorias[k].codCategoria)
                     $('.contenedorCategorias').append(cate_) 
-                    //3 temas en la subcategoria, 4 Titulo ultimo hilo, 5 Enlace ultimo hilo, 6 Nombre autor, 7 Enlace perfil autor
+                    //5 Enlace ultimo hilo, 7 Enlace perfil autor
                     Object.keys(JSON_.subcategorias).forEach(function(kk) {
-                        if (JSON_.subcategorias[k].codCategoria==JSON_.categorias[k].codCategoria) {
-                            let subcate_ = subcategoriaIPL.replaceAll('{0}',JSON_.subcategorias[k].titulo)
-                                        .replaceAll('{1}','puente?is=sc&destino=/subcategoria.xhtml&codigoSubcategoria='+JSON_.subcategorias[k].codSubcategoria)
-                                        .replaceAll('{2}',JSON_.subcategorias[k].descripcion)
+                        if (JSON_.subcategorias[kk].codCategoria==JSON_.categorias[k].codCategoria) {
+                            let subcate_ = subcategoriaIPL.replaceAll('{0}',JSON_.subcategorias[kk].titulo)
+                                        .replaceAll('{1}','puente?is=sc&destino=/subcategoria.xhtml&codigoSubcategoria='+JSON_.subcategorias[kk].codSubcategoria)
+                                        .replaceAll('{2}',JSON_.subcategorias[kk].descripcion)
+                                        .replaceAll('{3}',JSON_.subcategorias[kk].nHilos)
+                                        .replaceAll('{4}',JSON_.hilos[JSON_.subcategorias[kk].lastHilo].titulo)
+                                        .replaceAll('{5}','puente?is=h&destino=/hilo.xhtml&codigoHilo='+JSON_.subcategorias[kk].lastHilo)
+                                        .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario].nombre)
+                                        .replaceAll('{7}','puente?is=p&destino=/perfil.xhtml&codUsuario='+JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario)
                             $('.subcategoria'+JSON_.categorias[k].codCategoria).append(subcate_)
                         }
                     })
                 })
             })
-        });
+        }
     }
 
     /*

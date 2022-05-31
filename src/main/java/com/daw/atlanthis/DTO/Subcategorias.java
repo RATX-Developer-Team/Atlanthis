@@ -131,12 +131,27 @@ public class Subcategorias implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
-                "\"codSubcategoria\":\"" + codSubcategoria + '\"' +
-                ",\"codCategoria\":\"" +codCategoria+ '\"' +
-                ",\"titulo\":\"" + titulo + '\"' +
-                ",\"descripcion\":\"" + descripcion + '\"' +
-                ",\"anclado\":\"" + anclado + '\"' +
-                '}';
+        try {
+            Utilidades utils_ = new Utilidades();
+            Hilos ultimoHilo = utils_.getCtrHilos().lastHilo(codSubcategoria);
+            int ultimoHiloCode;
+            if (ultimoHilo==null) {
+                ultimoHiloCode = 0;
+            } else {
+                ultimoHiloCode = ultimoHilo.getCodHilo();
+            }
+            return "{" +
+                    "\"codSubcategoria\":\"" + codSubcategoria + '\"' +
+                    ",\"codCategoria\":\"" +codCategoria+ '\"' +
+                    ",\"titulo\":\"" + titulo + '\"' +
+                    ",\"nHilos\":\"" + utils_.getCtrHilos().findBySubcategoria(codSubcategoria) + '\"' +
+                    ",\"lastHilo\":\"" + ultimoHiloCode + '\"' +
+                    ",\"descripcion\":\"" + descripcion + '\"' +
+                    ",\"anclado\":\"" + anclado + '\"' +
+                    '}';
+        } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
+            Logger.getLogger(Subcategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "null";
     }    
 }

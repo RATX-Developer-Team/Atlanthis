@@ -7,7 +7,7 @@
     </servlet>
     <servlet>
         <servlet-name>response</servlet-name>
-        <servlet-class>com.daw.atlanthis.servlet.response</servlet-class>
+        <servlet-class>com.daw.atlanthis.servlet.responseCategorias</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>

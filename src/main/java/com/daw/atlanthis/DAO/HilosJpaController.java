@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -126,5 +127,24 @@ public class HilosJpaController implements Serializable {
             em.close();
         }
     }
-
+    
+    public int findBySubcategoria(int c){
+        EntityManager em = getEntityManager();
+        TypedQuery query=em.createNamedQuery("Hilos.findByCodSubcategoria", Hilos.class);
+        query.setParameter("codSubcategoria", c);
+        List<Hilos> x = query.getResultList();
+        return x.size();
+    }
+    
+    public Hilos lastHilo(int c){
+        EntityManager em = getEntityManager();
+        TypedQuery query=em.createNamedQuery("Hilos.findByCodSubcategoria", Hilos.class);
+        query.setParameter("codSubcategoria", c);
+        List<Hilos> x = query.getResultList();
+        Hilos hilo_ = null;
+        for(Hilos o:x) {
+            hilo_ = o;
+        }
+        return hilo_;
+    }
 }

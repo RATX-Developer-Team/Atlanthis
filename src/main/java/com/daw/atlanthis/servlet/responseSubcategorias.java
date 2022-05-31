@@ -21,34 +21,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet(urlPatterns={"/response"}, asyncSupported=false)
-public class response extends HttpServlet {
+@WebServlet(urlPatterns={"/responseSubcategorias"}, asyncSupported=false)
+public class responseSubcategorias extends HttpServlet {
     private JSONObject obj = new JSONObject();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Utilidades utils_ = new Utilidades();
-            String categorias = request.getParameter("categorias");
-            String hilos = request.getParameter("hilos");
-            String usuario = request.getParameter("usuario");
-            if (categorias!=null) {
-                switch (categorias) {
+            String subcategorias = request.getParameter("subcategorias");
+            if (subcategorias!=null) {
+                switch (subcategorias) {
                     case "todas":
-                        {
-                            obj = new JSONObject();
-                            List<Categorias> v = utils_.getCtrCategorias().findCategoriasEntities();
-                            for (Categorias k:v) {
-                                Categorias x = k;
-                                obj.put(x.getCodCategoria()+"", x.toString());
-                            }       break;
-                        }
-                    case "sub":
                         {
                             obj = new JSONObject();
                             List<Subcategorias> v = utils_.getCtrSubcategorias().findSubcategoriasEntities();
                             for (Subcategorias k:v) {
                                 Subcategorias x = k;
                                 obj.put(x.getCodSubcategoria()+"", x.toString());
-                            }       break;
+                            }
+                            break;
                         }
                     default:
                         {
@@ -56,38 +46,12 @@ public class response extends HttpServlet {
                             List<Subcategorias> v = utils_.getCtrSubcategorias().findSubcategoriasEntities();
                             for (Subcategorias k:v) {
                                 Subcategorias x = k;
-                                if (categorias.equals(x.getCodCategoria()+"")) {
+                                if (subcategorias.equals(x.getCodCategoria()+"")) {
                                     obj.put(x.getCodSubcategoria()+"", x.toString());
                                 }
-                            }       break;
+                            }
+                            break;
                         }
-                }
-            } else if (hilos!=null) {
-                if ("todos".equals(hilos)) {
-                    obj = new JSONObject();
-                    List<Hilos> v = utils_.getCtrHilos().findHilosEntities();
-                    for (Hilos k:v) {
-                        Hilos x = k;
-                        obj.put(x.getCodHilo()+"", x.toString());
-                    }
-                } else {
-                    obj = new JSONObject();
-                    List<Hilos> v = utils_.getCtrHilos().findHilosEntities();
-                    for (Hilos k:v) {
-                        Hilos x = k;
-                        if (hilos.equals(x.getCodSubcategoria()+"")) {
-                            obj.put(x.getCodHilo()+"", x.toString());
-                        }
-                    }
-                }
-            } else if (usuario!=null) {
-                obj = new JSONObject();
-                List<Usuarios> v = utils_.getCtrUsuarios().findUsuariosEntities();
-                for (Usuarios k:v) {
-                    Usuarios x = k;
-                    if (usuario.equals(x.getCodUsuario()+"")) {
-                        obj.put(x.getCodUsuario()+"", x.toString());
-                    }
                 }
             }
             PrintWriter out = response.getWriter();
@@ -97,7 +61,7 @@ public class response extends HttpServlet {
             out.flush();
             obj = new JSONObject();
         } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
-            Logger.getLogger(response.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(responseSubcategorias.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

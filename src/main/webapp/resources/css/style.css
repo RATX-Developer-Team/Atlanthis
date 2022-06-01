@@ -2,6 +2,21 @@
     --colorPrincipal: #224e68;
 }
 
+.breadcrumb-item+.breadcrumb-item::before {
+    float: none!important;
+}
+
+a {
+    cursor: pointer !important;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.activeB {
+    color: var(--colorPrincipal) !important;
+    font-weight: bold !important;
+}
+
 /*MAIN CSS*/
 .fondo {
     height: 10px;

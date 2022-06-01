@@ -1,6 +1,3 @@
-//puente?is=sc&destino=/subcategoria.jsp&codigoSubcategoria='+k
-
-
 //0 titulo de la categoria, 1 enlace a ver la categoria, 2 numero de categoria
 let categoriaIPL =  '<div class="categoria">'+
                         '<a href="{1}" aria-label="Dirigirse a la categoria {0}" class="enlaceCategoria"><h4 class="display-6 fs-4 tituloCategoria">{0}</h4></a>'+

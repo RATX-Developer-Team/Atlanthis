@@ -52,34 +52,71 @@ let Config = {
 */
 var UTILS__ = (function() {
 
+
+    /*
+        ** Descripcion: Metodo que devulve el valor de un parametro de la URL
+        ** Entrada: Nombre del parametro
+        ** Salida: Valor del parametro
+    */
+    function parametro(v) {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        return params[v]
+    }
+
     /*
         ** Descripcion: Metodo que carga obteniendo un JSON la pagina principal.
         ** Entrada: / 
         ** Salida: /
     */
-
     function cargaIndex() {
         if (listo) {
             $('.contenedorCategorias').ready(() => {
                 Object.keys(JSON_.categorias).forEach(function(k) {
                     let cate_ = categoriaIPL.replaceAll('{0}',JSON_.categorias[k].titulo)
-                                            .replaceAll('{1}','puente?is=c&destino=/categoria.xhtml&codigoCategoria='+JSON_.categorias[k].codCategoria)
+                                            .replaceAll('{1}','categoria.xhtml?codigoCategoria='+JSON_.categorias[k].codCategoria)
                                             .replaceAll('{2}',JSON_.categorias[k].codCategoria)
                     $('.contenedorCategorias').append(cate_) 
-                    //5 Enlace ultimo hilo, 7 Enlace perfil autor
                     Object.keys(JSON_.subcategorias).forEach(function(kk) {
                         if (JSON_.subcategorias[kk].codCategoria==JSON_.categorias[k].codCategoria) {
                             let subcate_ = subcategoriaIPL.replaceAll('{0}',JSON_.subcategorias[kk].titulo)
-                                        .replaceAll('{1}','puente?is=sc&destino=/subcategoria.xhtml&codigoSubcategoria='+JSON_.subcategorias[kk].codSubcategoria)
+                                        .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+JSON_.subcategorias[kk].codSubcategoria)
                                         .replaceAll('{2}',JSON_.subcategorias[kk].descripcion)
                                         .replaceAll('{3}',JSON_.subcategorias[kk].nHilos)
                                         .replaceAll('{4}',JSON_.hilos[JSON_.subcategorias[kk].lastHilo].titulo)
-                                        .replaceAll('{5}','puente?is=h&destino=/hilo.xhtml&codigoHilo='+JSON_.subcategorias[kk].lastHilo)
+                                        .replaceAll('{5}','hilo.xhtml?codigoHilo='+JSON_.subcategorias[kk].lastHilo)
                                         .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario].nombre)
-                                        .replaceAll('{7}','puente?is=p&destino=/perfil.xhtml&codUsuario='+JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario)
+                                        .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario)
                             $('.subcategoria'+JSON_.categorias[k].codCategoria).append(subcate_)
                         }
                     })
+                })
+            })
+        }
+    }
+
+    function cargaCategoria() {
+        if (listo) {
+            let catCode = parametro('codigoCategoria')
+            $('.contenedorCategoria').ready(() => {
+                $('.nombreCategoriaCarga').html(JSON_.categorias[catCode].titulo)
+                let cate_ = categoriaIPL.replaceAll('{0}',JSON_.categorias[catCode].titulo)
+                                        .replaceAll('{1}','categoria.xhtml?codigoCategoria='+catCode)
+                                        .replaceAll('{2}',catCode)
+                $('.contenedorCategoria').append(cate_) 
+                Object.keys(JSON_.subcategorias).forEach(function(kk) {
+                    if (JSON_.subcategorias[kk].codCategoria==catCode) {
+                        let subcate_ = subcategoriaIPL.replaceAll('{0}',JSON_.subcategorias[kk].titulo)
+                                    .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+JSON_.subcategorias[kk].codSubcategoria)
+                                    .replaceAll('{2}',JSON_.subcategorias[kk].descripcion)
+                                    .replaceAll('{3}',JSON_.subcategorias[kk].nHilos)
+                                    .replaceAll('{4}',JSON_.hilos[JSON_.subcategorias[kk].lastHilo].titulo)
+                                    .replaceAll('{5}','hilo.xhtml?codigoHilo='+JSON_.subcategorias[kk].lastHilo)
+                                    .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario].nombre)
+                                    .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario)
+                        $('.subcategoria'+catCode).append(subcate_)
+                    }
                 })
             })
         }
@@ -128,6 +165,7 @@ var UTILS__ = (function() {
     return {
         placeholderFix:placeholderFix,
         ocultarError:ocultarError,
-        cargaIndex:cargaIndex
+        cargaIndex:cargaIndex,
+        cargaCategoria:cargaCategoria
     }
 })()

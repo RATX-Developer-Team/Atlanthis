@@ -1,6 +1,6 @@
 package com.daw.atlanthis.servlet;
 
-import com.daw.atlanthis.DTO.Categorias;
+import com.daw.atlanthis.DTO.Respuestas;
 import com.daw.atlanthis.utils.Utilidades;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -18,24 +18,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet(urlPatterns={"/responseCategorias"}, asyncSupported=false)
-public class responseCategorias extends HttpServlet {
+@WebServlet(urlPatterns={"/responseRespuestas"}, asyncSupported=false)
+public class responseRespuestas extends HttpServlet {
     private JSONObject obj = new JSONObject();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Utilidades utils_ = new Utilidades();
-            String categorias = request.getParameter("categorias");
-            if (categorias!=null) {
-                switch (categorias) {
-                    case "todas":
-                        {
-                            obj = new JSONObject();
-                            List<Categorias> v = utils_.getCtrCategorias().findCategoriasEntities();
-                            for (Categorias k:v) {
-                                Categorias x = k;
-                                obj.put(x.getCodCategoria()+"", x.toString());
-                            }       break;
-                        }
+            String respuestas = request.getParameter("respuestas");
+            if (respuestas!=null) {
+                if ("todas".equals(respuestas)) {
+                    obj = new JSONObject();
+                    List<Respuestas> v = utils_.getCtrRespuestas().findRespuestasEntities();
+                    for (Respuestas k:v) {
+                        Respuestas x = k;
+                        obj.put(x.getCodRespuesta()+"", x.toString());
+                    }
                 }
             }
             PrintWriter out = response.getWriter();
@@ -45,7 +42,7 @@ public class responseCategorias extends HttpServlet {
             out.flush();
             obj = new JSONObject();
         } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
-            Logger.getLogger(responseCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(responseRespuestas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

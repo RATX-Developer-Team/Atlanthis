@@ -1,8 +1,5 @@
 package com.daw.atlanthis.servlet;
 
-import com.daw.atlanthis.DTO.Categorias;
-import com.daw.atlanthis.DTO.Hilos;
-import com.daw.atlanthis.DTO.Subcategorias;
 import com.daw.atlanthis.DTO.Usuarios;
 import com.daw.atlanthis.utils.Utilidades;
 import org.json.JSONObject;

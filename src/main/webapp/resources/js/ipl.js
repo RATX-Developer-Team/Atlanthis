@@ -22,3 +22,12 @@ let subcategoriaIPL =   '<div class="subcategoria d-flex flex-row justify-conten
                             '</div>'+
                         '</div>'+
                         '</div>'
+
+let hiloIPL =   '<div class="subcategoria d-flex flex-row justify-content-between">'+ 
+                        '<div class="d-flex flex-column">'+ 
+                            '<a href="{1}" aria-label="Dirigirse a la subcategoria {0}" class="enlaceSubcategoria"><h4 class="display-6 fs-4"><i class="fa-solid fa-copy"></i> {0}</h4></a>'+
+                            '<h5 class="display-6 fs-6">Ultima respuesta por <a href="{7}" aria-label="Dirigirse al perfil de {6}" class="enlaceHilo">{6}</a></h5>'+
+                        '</div>'+
+                        '<div class="d-flex flex-row">'+
+                        '</div>'+
+                        '</div>'

@@ -6,10 +6,18 @@
     float: none!important;
 }
 
-a {
+main div a {
     cursor: pointer !important;
     text-decoration: none !important;
-    color: inherit !important;
+    font-weight: 600 !important;
+    color: var(--colorPrincipal) !important;;
+}
+
+main div a.enlaceSubcategoria h4, main div a.enlaceHilo h4{
+    cursor: pointer !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    color: var(--colorPrincipal) !important;;
 }
 
 .activeB {

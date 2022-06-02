@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -125,6 +126,18 @@ public class RespuestasJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    public Respuestas lastRespuesta(int c){
+        EntityManager em = getEntityManager();
+        TypedQuery query=em.createNamedQuery("Respuestas.findByCodHilo", Respuestas.class);
+        query.setParameter("codHilo", c);
+        List<Respuestas> x = query.getResultList();
+        Respuestas respuestas_ = null;
+        for(Respuestas o:x) {
+            respuestas_ = o;
+        }
+        return respuestas_;
     }
 
 }

@@ -1,7 +1,15 @@
 package com.daw.atlanthis.DTO;
 
+import com.daw.atlanthis.utils.Utilidades;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.NoSuchPaddingException;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -176,16 +184,30 @@ public class Hilos implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
-                "\"codHilo\":\"" + codHilo + '\"' +
-                ",\"codCategoria\":\"" +codCategoria+ '\"' +
-                ",\"codSubcategoria\":\"" + codSubcategoria + '\"' +
-                ",\"titulo\":\"" + titulo + '\"' +
-                ",\"fechaPubli\":\"" + fechaPubli + '\"' +
-                ",\"nVisitas\":\"" + nVisitas + '\"' +
-                ",\"nRespuestas\":\"" + nRespuestas + '\"' +
-                ",\"codUsuario\":\"" + codUsuario + '\"' +
-                ",\"anclado\":\"" + anclado + '\"' +
-                '}';
+        try {
+            Utilidades utils_ = new Utilidades();
+            Respuestas ultimaRespuesta = utils_.getCtrRespuestas().lastRespuesta(codHilo);
+            int ultimoRespuestaCode;
+            if (ultimaRespuesta==null) {
+                ultimoRespuestaCode = 0;
+            } else {
+                ultimoRespuestaCode = ultimaRespuesta.getCodHilo();
+            }
+            return "{" +
+                    "\"codHilo\":\"" + codHilo + '\"' +
+                    ",\"codCategoria\":\"" +codCategoria+ '\"' +
+                    ",\"codSubcategoria\":\"" + codSubcategoria + '\"' +
+                    ",\"lastRespuesta\":\"" + ultimoRespuestaCode + '\"' +
+                    ",\"titulo\":\"" + titulo + '\"' +
+                    ",\"fechaPubli\":\"" + fechaPubli + '\"' +
+                    ",\"nVisitas\":\"" + nVisitas + '\"' +
+                    ",\"nRespuestas\":\"" + nRespuestas + '\"' +
+                    ",\"codUsuario\":\"" + codUsuario + '\"' +
+                    ",\"anclado\":\"" + anclado + '\"' +
+                    '}';
+        } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
+            Logger.getLogger(Hilos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "null";
     }    
 }

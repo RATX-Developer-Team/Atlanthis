@@ -6,6 +6,7 @@ import com.daw.atlanthis.DAO.NewsletterJpaController;
 import com.daw.atlanthis.DAO.RespuestasJpaController;
 import com.daw.atlanthis.DAO.SubcategoriasJpaController;
 import com.daw.atlanthis.DAO.UsuariosJpaController;
+import com.daw.atlanthis.DTO.Hilos;
 import com.daw.atlanthis.DTO.Usuarios;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -115,6 +116,18 @@ public class Utilidades  {
             Usuarios x = o;
             if (x.getCodUsuario()>i) {
                 i = x.getCodUsuario();
+            }
+        }
+        return i;
+    }
+    
+    public int lastId_hilos() {
+        List<Hilos> v = ctrHilos.findHilosEntities();
+        int i=0;
+        for(Hilos o:v) {
+            Hilos x = o;
+            if (x.getCodHilo()>i) {
+                i = x.getCodHilo();
             }
         }
         return i;

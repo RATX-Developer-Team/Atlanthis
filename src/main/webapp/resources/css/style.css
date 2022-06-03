@@ -2,6 +2,26 @@
     --colorPrincipal: #224e68;
 }
 
+.dialogSubcate {
+    position: absolute !important;
+}
+
+body .ui-button {
+    background: var(--colorPrincipal);
+    color: #ffffff;
+    border: 1px solid var(--colorPrincipal);
+    margin: 0;
+    outline: 0 none;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+body .ui-button.ui-state-hover, body .ui-button.ui-state-active{
+    background: #193a4d!important;
+    border-color:#193a4d!important;
+    color: #ffffff;
+}
+
 .breadcrumb-item+.breadcrumb-item::before {
     float: none!important;
 }

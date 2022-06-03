@@ -10,8 +10,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Atlanthis | Foro líder de información en español</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
         <h:outputScript name="js/ipl.js"/>
         <h:outputScript name="js/utilidades.js"/>
@@ -24,7 +22,6 @@
         <ui:insert name="scripts">   
         </ui:insert>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
         <h:outputStylesheet name="css/style.css"/>
         <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/RATX-Developer-Team/Atlanthis/main/dise%C3%B1o/AtlanthisFavicon48.ico"/>
@@ -53,6 +50,7 @@
                             <div class="d-flex flex-column flex-sm-row">
                                 <ul class="navbar-nav">
                                     <li class="nav-item d-flex flex-row align-items-center">
+                                        <h:inputText style="display: none!important;" value="#{beanLogin.usu.codUsuario}" styleClass="codUsuarioFinal"/>
                                         <p:graphicImage name="img/#{beanLogin.usu.imagen}" class="img-responsive fotoPerfil me-2 me-sm-0 mb-1 mb-sm-0" height="40" alt="Foto de perfil"/>
                                         <p:link class="nav-link" href="perfil.xhtml">#{beanLogin.usu.nombre}</p:link>
                                         <h:form styleClass="ms-1 ms-sm-0" style="display: inline;">

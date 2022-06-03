@@ -218,6 +218,7 @@ var UTILS__ = (function() {
         ocultarError:ocultarError,
         cargaIndex:cargaIndex,
         cargaCategoria:cargaCategoria,
+        parametro:parametro,
         cargaSubcategoria:cargaSubcategoria
     }
 })()

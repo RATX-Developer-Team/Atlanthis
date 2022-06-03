@@ -92,6 +92,17 @@ public class Hilos implements Serializable {
         this.nRespuestas = nRespuestas;
         this.codUsuario = codUsuario;
     }
+    
+    public Hilos(Integer codHilo,int codCategoria, int codSubcategoria, String titulo, Date fechaPubli, int nVisitas, int nRespuestas, int codUsuario) {
+        this.codHilo = codHilo;
+        this.codCategoria = codCategoria;
+        this.codSubcategoria = codSubcategoria;
+        this.titulo = titulo;
+        this.fechaPubli = fechaPubli;
+        this.nVisitas = nVisitas;
+        this.nRespuestas = nRespuestas;
+        this.codUsuario = codUsuario;
+    }
 
     public Integer getCodHilo() {
         return codHilo;

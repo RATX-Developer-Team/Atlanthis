@@ -40,7 +40,7 @@ let getData = () => {
     response("responseUsuarios",{
         usuario: 'todos'
     }, 'usuarios')
-
+    localStorage.setItem('JSONPrincipal', JSON.stringify(JSON_));
     return true
 }
 let listo = getData();
@@ -149,29 +149,61 @@ var UTILS__ = (function() {
         ** Entrada: / 
         ** Salida: /
     */
-        function cargaSubcategoria() {
-            if (listo) {
-                let subCode = parametro('codigoSubcategoria')
-                $('.contenedorSubcategoria').ready(() => {
-                    $('.nombreCategoriaCarga').html('<a href="categoria.xhtml?codigoCategoria='+JSON_.subcategorias[subCode].codCategoria+'">'+JSON_.categorias[JSON_.subcategorias[subCode].codCategoria].titulo+'</a>')
-                    $('.nombreSubcategoriaCarga').html(JSON_.subcategorias[subCode].titulo)
+    function cargaSubcategoria() {
+        if (listo) {
+            let subCode = parametro('codigoSubcategoria')
+            $('.contenedorSubcategoria').ready(() => {
+                $('.nombreCategoriaCarga').html('<a href="categoria.xhtml?codigoCategoria='+JSON_.subcategorias[subCode].codCategoria+'">'+JSON_.categorias[JSON_.subcategorias[subCode].codCategoria].titulo+'</a>')
+                $('.nombreSubcategoriaCarga').html(JSON_.subcategorias[subCode].titulo)
 
-                    let subcate_ = categoriaIPL.replaceAll('{0}',JSON_.subcategorias[subCode].titulo)
-                                            .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+subCode)
-                                            .replaceAll('{2}',subCode)
-                    $('.contenedorSubcategoria').append(subcate_) 
-                    Object.keys(JSON_.hilos).forEach(function(kk) {
-                        if (JSON_.hilos[kk].codSubcategoria==subCode) {
-                            let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
-                                        .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
-                                        .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
-                                        .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[kk].codUsuario)
-                            $('.subcategoria'+subCode).append(hilo_)
-                        }
-                    })
+                let subcate_ = categoriaIPL.replaceAll('{0}',JSON_.subcategorias[subCode].titulo)
+                                        .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+subCode)
+                                        .replaceAll('{2}',subCode)
+                $('.contenedorSubcategoria').append(subcate_) 
+                Object.keys(JSON_.hilos).forEach(function(kk) {
+                    if (JSON_.hilos[kk].codSubcategoria==subCode) {
+                        let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
+                                    .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
+                                    .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
+                                    .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[kk].codUsuario)
+                        $('.subcategoria'+subCode).append(hilo_)
+                    }
                 })
-            }
+            })
         }
+    }
+
+    /*
+        ** Descripcion: Metodo que carga el perfil de un usuario.
+        ** Entrada: / 
+        ** Salida: /
+    */
+    function cargarPerfil() {
+        // 0 imagen del usuarios, 1 nombre del usuario, 2 apellido del usuario, 3 fecha de nacimiento, 4 pais, 5 rango del usuario
+        if (listo) {
+            let usuCode = parametro('codUsuario')
+            $('.contenedorPerfiles').ready(() => {
+                $('.nombrePerfil').html("Perfil de "+JSON_.usuarios[usuCode].nombre)
+                let permiso = JSON_.usuarios[usuCode].apellidos
+                if (permiso==null || permiso==0) {
+                    permiso = 'Usuario'
+                } else if (permiso==1) {
+                    permiso = 'Soporte'
+                } else if (permiso==2) {
+                    permiso = 'Moderador'
+                } else if (permiso==3) {
+                    permiso = 'Administrador'
+                }
+                let perfil_ = perfilIPL.replaceAll('{0}',JSON_.usuarios[usuCode].imagen)
+                                        .replaceAll('{1}',JSON_.usuarios[usuCode].nombre)
+                                        .replaceAll('{2}',JSON_.usuarios[usuCode].apellidos)
+                                        .replaceAll('{3}',JSON_.usuarios[usuCode].fechaNacimiento)
+                                        .replaceAll('{4}',JSON_.usuarios[usuCode].pais)
+                                        .replaceAll('{5}',permiso)
+                $('.contenedorPerfiles').append(perfil_) 
+            })
+        }
+    }
 
     /*
         ** Descripcion: Metodo que rellena los placeholder que no se pueden rellenar por culpa de JSF.
@@ -219,6 +251,7 @@ var UTILS__ = (function() {
         cargaIndex:cargaIndex,
         cargaCategoria:cargaCategoria,
         parametro:parametro,
+        cargarPerfil:cargarPerfil,
         cargaSubcategoria:cargaSubcategoria
     }
 })()

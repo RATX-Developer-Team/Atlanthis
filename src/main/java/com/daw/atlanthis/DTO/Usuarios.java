@@ -1,6 +1,8 @@
 package com.daw.atlanthis.DTO;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -185,10 +187,11 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         return "{" +
                 "\"email\":\"" + email + '\"' +
                 ",\"codUsuario\":\"" +codUsuario+ '\"' +
-                ",\"fechaNacimiento\":\"" + fechaNacimiento + '\"' +
+                ",\"fechaNacimiento\":\"" + format.format(fechaNacimiento) + '\"' +
                 ",\"pais\":\"" + pais + '\"' +
                 ",\"nombre\":\"" + nombre + '\"' +
                 ",\"apellidos\":\"" + apellidos + '\"' +

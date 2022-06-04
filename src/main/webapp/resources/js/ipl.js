@@ -31,3 +31,18 @@ let hiloIPL =   '<div class="subcategoria d-flex flex-row justify-content-betwee
                         '<div class="d-flex flex-row">'+
                         '</div>'+
                         '</div>'
+
+// 0 imagen del usuarios, 1 nombre del usuario, 2 apellido del usuario, 3 fecha de nacimiento, 4 pais, 5 rango del usuario
+let perfilIPL = '<div class="container-fluid d-flex flex-row justify-content-start">'+
+                    '<div class="contenedorFoto">'+
+                        '<img id="j_idt23" src="/Atlanthis/faces/javax.faces.resource/img/{0}" class="img-responsive fotoPerfil me-2 me-sm-0 mb-1 mb-sm-0" alt="Foto de perfil" height="150"/>'+
+                    '</div>'+
+                    '<div class="contenedorInfo">'+
+                        '<ul>'+
+                            '<li><span>Nombre completo:</span> {1} {2}</li>'+
+                            '<li><span>Fecha de nacimiento:</span> {3}</li>'+
+                            '<li><span>Pais:</span> {4}</li>'+
+                            '<li><span>Nivel de permiso:</span> {5}</li>'+
+                        '</ul>'+
+                    '</div>'+
+                '</div>'

@@ -6,6 +6,20 @@
     position: absolute !important;
 }
 
+.contenedorFoto {
+    padding-right: 30px;
+    border-right: 1px solid gray;
+}
+
+.contenedorInfo ul li {
+    padding-top: 8px;
+}
+
+.contenedorInfo ul li span {
+    font-weight: bold !important;
+    color: var(--colorPrincipal);
+}
+
 body .ui-button {
     background: var(--colorPrincipal);
     color: #ffffff;

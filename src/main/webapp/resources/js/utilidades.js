@@ -174,6 +174,36 @@ var UTILS__ = (function() {
     }
 
     /*
+    ** Descripcion: Metodo que carga obteniendo un JSON la pagina de hilo.
+    ** Entrada: / 
+    ** Salida: /
+    */
+    function cargaHilos() {
+        if (listo) {
+            let hiloCode = parametro('codigoHilo')
+            $('.contenedorHilos').ready(() => {
+                $('.nombreCategoriaCarga').html('<a href="categoria.xhtml?codigoCategoria='+JSON_.hilos[hiloCode].codCategoria+'">'+JSON_.categorias[JSON_.hilos[hiloCode].codCategoria].titulo+'</a>')
+                $('.nombreSubcategoriaCarga').html('<a href="subcategoria.xhtml?codigoSubcategoria='+JSON_.hilos[hiloCode].codSubcategoria+'">'+JSON_.subcategorias[JSON_.hilos[hiloCode].codSubcategoria].titulo+'</a>')
+                $('.nombreHilo').html(JSON_.hilos[hiloCode].titulo)
+
+                // let subcate_ = categoriaIPL.replaceAll('{0}',JSON_.subcategorias[subCode].titulo)
+                //                         .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+subCode)
+                //                         .replaceAll('{2}',subCode)
+                // $('.contenedorSubcategoria').append(subcate_) 
+                // Object.keys(JSON_.hilos).forEach(function(kk) {
+                //     if (JSON_.hilos[kk].codSubcategoria==subCode) {
+                //         let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
+                //                     .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
+                //                     .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
+                //                     .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[kk].codUsuario)
+                //         $('.subcategoria'+subCode).append(hilo_)
+                //     }
+                // })
+            })
+        }
+    }
+
+    /*
         ** Descripcion: Metodo que carga el perfil de un usuario.
         ** Entrada: / 
         ** Salida: /
@@ -252,6 +282,7 @@ var UTILS__ = (function() {
         cargaCategoria:cargaCategoria,
         parametro:parametro,
         cargarPerfil:cargarPerfil,
+        cargaHilos:cargaHilos,
         cargaSubcategoria:cargaSubcategoria
     }
 })()

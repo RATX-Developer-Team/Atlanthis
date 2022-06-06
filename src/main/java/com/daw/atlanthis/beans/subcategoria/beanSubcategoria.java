@@ -3,7 +3,6 @@ package com.daw.atlanthis.beans.subcategoria;
 import com.daw.atlanthis.DTO.Hilos;
 import com.daw.atlanthis.DTO.Respuestas;
 import com.daw.atlanthis.DTO.Subcategorias;
-import com.daw.atlanthis.DTO.Usuarios;
 import com.daw.atlanthis.utils.Utilidades;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;

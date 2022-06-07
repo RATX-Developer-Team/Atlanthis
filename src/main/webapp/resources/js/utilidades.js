@@ -161,7 +161,16 @@ var UTILS__ = (function() {
                                         .replaceAll('{2}',subCode)
                 $('.contenedorSubcategoria').append(subcate_) 
                 Object.keys(JSON_.hilos).forEach(function(kk) {
-                    if (JSON_.hilos[kk].codSubcategoria==subCode) {
+                    if (JSON_.hilos[kk].codSubcategoria==subCode && JSON_.hilos[kk].anclado == 1) {
+                        let hilo_ = hilo2IPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
+                                    .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
+                                    .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
+                                    .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[kk].codUsuario)
+                        $('.subcategoria'+subCode).append(hilo_)
+                    }
+                })
+                Object.keys(JSON_.hilos).forEach(function(kk) {
+                    if (JSON_.hilos[kk].codSubcategoria==subCode && JSON_.hilos[kk].anclado == 0 || JSON_.hilos[kk].anclado == null) {
                         let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
                                     .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
                                     .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
@@ -185,11 +194,14 @@ var UTILS__ = (function() {
                 $('.nombreCategoriaCarga').html('<a href="categoria.xhtml?codigoCategoria='+JSON_.hilos[hiloCode].codCategoria+'">'+JSON_.categorias[JSON_.hilos[hiloCode].codCategoria].titulo+'</a>')
                 $('.nombreSubcategoriaCarga').html('<a href="subcategoria.xhtml?codigoSubcategoria='+JSON_.hilos[hiloCode].codSubcategoria+'">'+JSON_.subcategorias[JSON_.hilos[hiloCode].codSubcategoria].titulo+'</a>')
                 $('.nombreHilo').html(JSON_.hilos[hiloCode].titulo)
+// ORDENAR EL OBJETO Y MONTARLO TODO
+                let respuesta1_ = respuesta1IPL.replaceAll('{0}',JSON_.subcategorias[subCode].titulo)
+                                        .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+subCode)
+                                        .replaceAll('{2}',subCode)
+                $('.contenedorHilos').append(respuesta1_)
 
-                // let subcate_ = categoriaIPL.replaceAll('{0}',JSON_.subcategorias[subCode].titulo)
-                //                         .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+subCode)
-                //                         .replaceAll('{2}',subCode)
-                // $('.contenedorSubcategoria').append(subcate_) 
+
+
                 // Object.keys(JSON_.hilos).forEach(function(kk) {
                 //     if (JSON_.hilos[kk].codSubcategoria==subCode) {
                 //         let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)

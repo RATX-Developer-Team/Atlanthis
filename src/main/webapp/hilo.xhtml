@@ -18,13 +18,14 @@
                         <li class="breadcrumb-item activeB nombreHilo" aria-current="page"></li>
                     </ol>
                 </nav>
+                <h4 class="nombreHilo mt-2"></h4>
             </div>
             <p:dialog styleClass="dialogSubcate" header="Responder" widgetVar="dlg" minHeight="40" width="80%" showEffect="fade" modal="true">
                 <div><p:textEditor widgetVar="editor1" styleClass="contenidoHilo" value="#{beanHilo.contenidoPrincipal}" height="400" /></div>          
                 <p:commandButton type="button" value="Crear" styleClass="mt-1 botonCrearRespuesta" icon="pi pi-check"/>
             </p:dialog>
             <main class="container contenedorHilos mt-5 mb-5">
-                <p:commandButton styleClass="mb-3" value="Responder" type="button" icon="pi pi-external-link" onclick="PF('dlg').show()"/>
+                <p:commandButton styleClass="mb-5" value="Responder" type="button" icon="pi pi-external-link" onclick="PF('dlg').show()"/>
             </main>
         </ui:define>
     </ui:composition>

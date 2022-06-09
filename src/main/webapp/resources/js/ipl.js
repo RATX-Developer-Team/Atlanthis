@@ -57,14 +57,14 @@ let perfilIPL = '<div class="container-fluid d-flex flex-row justify-content-sta
                 '</div>'
 
 
-// 1 foto de usuario, 2 nombre usuario, 3 rango usuario, 4 contenido respuesta
-let respuesta1IPL = '<div class="contendorRespuesta2 container-fuild d-flex flex-column">'+
+// 1 foto de usuario, 2 nombre usuario, 3 rango usuario, 4 contenido respuesta , 5 enalce perfil
+let respuesta1IPL = '<div class="contendorRespuesta container-fuild d-flex flex-column">'+
                         '<div class="cotainer-fluid d-flex flex-row">'+
                             '<div class="d-flex flex-column align-items-center">'+
                                 '<div class="fotoUsuRespuesta">'+
                                     '<img id="j_idt23" src="/Atlanthis/faces/javax.faces.resource/img/{1}" class="img-responsive fotoPerfil me-2 me-sm-0 mb-1 mb-sm-0" alt="Foto de perfil" height="150"/>'+
                                 '</div>'+
-                                '<div class="nombreUsuRespuesta mt-2">{2}</div>'+
+                                '<div class="nombreUsuRespuesta mt-2"><a href="{5}" aria-label="Dirigirse al perfil de {6}" class="enlaceHilo">{2}</a></div>'+
                                 '<div class="rangoUsuHRespuesta mt-1">{3}</div>'+
                             '</div>'+
                             '<div class="ms-5 contenidoRespuesta d-flex align-items-center">'+
@@ -75,14 +75,14 @@ let respuesta1IPL = '<div class="contendorRespuesta2 container-fuild d-flex flex
                         '</div>'+
                     '</div>'
 
-// 0 Codigo respuesta, 1 foto de usuario, 2 nombre usuario, 3 rango usuario, 4 contenido respuesta
+// 0 Codigo respuesta, 1 foto de usuario, 2 nombre usuario, 3 rango usuario, 4 contenido respuesta , 5 enalce perfil, 6 boton solucion si procede
 let respuesta2IPL = '<div class="contendorRespuesta2 container-fuild d-flex flex-column">'+
                         '<div class="cotainer-fluid d-flex flex-row">'+
                             '<div class="d-flex flex-column align-items-center">'+
                                 '<div class="fotoUsuRespuesta">'+
                                     '<img id="j_idt23" src="/Atlanthis/faces/javax.faces.resource/img/{1}" class="img-responsive fotoPerfil me-2 me-sm-0 mb-1 mb-sm-0" alt="Foto de perfil" height="150"/>'+
                                 '</div>'+
-                                '<div class="nombreUsuRespuesta mt-2">{2}</div>'+
+                                '<div class="nombreUsuRespuesta mt-2"><a href="{5}" aria-label="Dirigirse al perfil de {2}" class="enlaceHilo">{2}</a></div>'+
                                 '<div class="rangoUsuHRespuesta mt-1">{3}</div>'+
                             '</div>'+
                             '<div class="ms-5 contenidoRespuesta d-flex align-items-center">'+
@@ -90,19 +90,18 @@ let respuesta2IPL = '<div class="contendorRespuesta2 container-fuild d-flex flex
                             '</div>'+
                         '</div>'+
                         '<div class="mt-2 cotainer-fluid d-flex flex-row justify-content-end">'+
-                            '<input type="hidden" id="codRespuestasele" name="codRespuestasele" value="{0}">'+
-                            '<button style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-3 me-3" type="button"><i class="fa-solid fa-check"></i> Solucion</button>'+
+                            '{6}'+
                         '</div>'+
                     '</div>'
 
-// 0 Codigo respuesta, 1 foto de usuario, 2 nombre usuario, 3 rango usuario, 4 contenido respuesta
+// 0 Codigo respuesta, 1 foto de usuario, 2 nombre usuario, 3 rango usuario, 4 contenido respuesta , 5 enalce perfil, 6 subir, 7 bajar, 8 solucion
 let respuesta3IPL = '<div class="contendorRespuesta container-fuild d-flex flex-column">'+
                         '<div class="cotainer-fluid d-flex flex-row">'+
                             '<div class="d-flex flex-column align-items-center">'+
                                 '<div class="fotoUsuRespuesta">'+
                                     '<img id="j_idt23" src="/Atlanthis/faces/javax.faces.resource/img/{1}" class="img-responsive fotoPerfil me-2 me-sm-0 mb-1 mb-sm-0" alt="Foto de perfil" height="150"/>'+
                                 '</div>'+
-                                '<div class="nombreUsuRespuesta mt-2">{2}</div>'+
+                                '<div class="nombreUsuRespuesta mt-2"><a href="{5}" aria-label="Dirigirse al perfil de {2}" class="enlaceHilo">{2}</a></div>'+
                                 '<div class="rangoUsuHRespuesta mt-1">{3}</div>'+
                             '</div>'+
                             '<div class="ms-5 contenidoRespuesta d-flex align-items-center">'+
@@ -110,9 +109,8 @@ let respuesta3IPL = '<div class="contendorRespuesta container-fuild d-flex flex-
                             '</div>'+
                         '</div>'+
                         '<div class="mt-2 cotainer-fluid d-flex flex-row justify-content-end">'+
-                            '<input type="hidden" id="codRespuestasele" name="codRespuestasele" value="{0}">'+
-                            '<button style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-3 me-3" type="button"><i class="fa-solid fa-plus"></i> Subir</button>'+
-                            '<button style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-3 me-3" type="button"><i class="fa-solid fa-minus"></i> Bajar</button>'+
-                            '<button style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-3 me-3" type="button"><i class="fa-solid fa-check"></i> Solucion</button>'+
+                            '{6}'+
+                            '{7}'+
+                            '{8}'+
                         '</div>'+
                     '</div>'

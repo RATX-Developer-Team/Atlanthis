@@ -170,7 +170,7 @@ var UTILS__ = (function() {
                     }
                 })
                 Object.keys(JSON_.hilos).forEach(function(kk) {
-                    if (JSON_.hilos[kk].codSubcategoria==subCode && JSON_.hilos[kk].anclado == 0 || JSON_.hilos[kk].anclado == null) {
+                    if (JSON_.hilos[kk].codSubcategoria==subCode && JSON_.hilos[kk].anclado == "null" || JSON_.hilos[kk].codSubcategoria==subCode && JSON_.hilos[kk].anclado == 0) {
                         let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
                                     .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
                                     .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
@@ -194,26 +194,114 @@ var UTILS__ = (function() {
                 $('.nombreCategoriaCarga').html('<a href="categoria.xhtml?codigoCategoria='+JSON_.hilos[hiloCode].codCategoria+'">'+JSON_.categorias[JSON_.hilos[hiloCode].codCategoria].titulo+'</a>')
                 $('.nombreSubcategoriaCarga').html('<a href="subcategoria.xhtml?codigoSubcategoria='+JSON_.hilos[hiloCode].codSubcategoria+'">'+JSON_.subcategorias[JSON_.hilos[hiloCode].codSubcategoria].titulo+'</a>')
                 $('.nombreHilo').html(JSON_.hilos[hiloCode].titulo)
-// ORDENAR EL OBJETO Y MONTARLO TODO
-                let respuesta1_ = respuesta1IPL.replaceAll('{0}',JSON_.subcategorias[subCode].titulo)
-                                        .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+subCode)
-                                        .replaceAll('{2}',subCode)
-                $('.contenedorHilos').append(respuesta1_)
+                let i_ = 0
 
+                //Primera respusta del hilo , con la que se creo
+                Object.keys(JSON_.respuestas).forEach(function(index) {
+                    if (JSON_.respuestas[index].codHilo == hiloCode && i_ == 0) {
+                        let permiso = JSON_.usuarios[JSON_.respuestas[index].codUsuario].permiso
+                        if (permiso==null || permiso=="null" || permiso==0) {
+                            permiso = 'Usuario'
+                        } else if (permiso==1) {
+                            permiso = 'Soporte'
+                        } else if (permiso==2) {
+                            permiso = 'Moderador'
+                        } else if (permiso==3) {
+                            permiso = 'Administrador'
+                        }
+                        let respuesta1_ = respuesta1IPL.replaceAll('{1}',JSON_.usuarios[JSON_.respuestas[index].codUsuario].imagen)
+                                                .replaceAll('{2}',JSON_.usuarios[JSON_.respuestas[index].codUsuario].nombre)
+                                                .replaceAll('{3}',permiso)
+                                                .replaceAll('{4}',JSON_.respuestas[index].contenido)
+                                                .replaceAll('{5}','perfil.xhtml?codUsuario='+JSON_.respuestas[index].codUsuario)
+                        $('.contenedorHilos').append(respuesta1_)
+                        i_++
+                    }
+                })
+                //Respuestas que son solucion
+                Object.keys(JSON_.respuestas).forEach(function(index) {
+                    if (JSON_.respuestas[index].codHilo == hiloCode && JSON_.respuestas[index].solucion == 1) {
+                        let permiso = JSON_.usuarios[JSON_.respuestas[index].codUsuario].permiso
+                        if (permiso==null || permiso=="null" || permiso==0) {
+                            permiso = 'Usuario'
+                        } else if (permiso==1) {
+                            permiso = 'Soporte'
+                        } else if (permiso==2) {
+                            permiso = 'Moderador'
+                        } else if (permiso==3) {
+                            permiso = 'Administrador'
+                        }
+                        let respuesta1_ = respuesta2IPL.replaceAll('{1}',JSON_.usuarios[JSON_.respuestas[index].codUsuario].imagen)
+                                                .replaceAll('{2}',JSON_.usuarios[JSON_.respuestas[index].codUsuario].nombre)
+                                                .replaceAll('{3}',permiso)
+                                                .replaceAll('{4}',JSON_.respuestas[index].contenido)
+                                                .replaceAll('{5}','perfil.xhtml?codUsuario='+JSON_.respuestas[index].codUsuario)         
+                        let respu_       
+                        if (JSON_.hilos[JSON_.respuestas[index].codHilo].codUsuario == $('.codUsuarioFinal').val()) {
+                            respu_ = respuesta1_.replaceAll('{6}','<button onclick="cambiarSolucion('+JSON_.respuestas[index].codRespuesta+')" style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-3 me-3" type="button"><i class="fa-solid fa-xmark"></i> Solucion</button>')
+                        } else {
+                            respu_ = respuesta1_.replaceAll('{6}','')
+                        }            
+                        $('.contenedorHilos').append(respu_)                            
+                    }
+                })
 
+                let objOrdenado = ordenarRespuesta("votos")
+                //Respuestas que son solucion
+                Object.keys(objOrdenado).forEach(function(index) {
+                    if (objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == 0
+                        || objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == null
+                        || objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == "null") {
+                        let permiso = JSON_.usuarios[objOrdenado[index].codUsuario].permiso
+                        if (permiso==null || permiso=="null" || permiso==0) {
+                            permiso = 'Usuario'
+                        } else if (permiso==1) {
+                            permiso = 'Soporte'
+                        } else if (permiso==2) {
+                            permiso = 'Moderador'
+                        } else if (permiso==3) {
+                            permiso = 'Administrador'
+                        }
+                        let respuesta1_ = respuesta3IPL.replaceAll('{1}',JSON_.usuarios[objOrdenado[index].codUsuario].imagen)
+                                                .replaceAll('{2}',JSON_.usuarios[objOrdenado[index].codUsuario].nombre)
+                                                .replaceAll('{3}',permiso)
+                                                .replaceAll('{4}',objOrdenado[index].contenido)
+                                                .replaceAll('{5}','perfil.xhtml?codUsuario='+objOrdenado[index].codUsuario)
+                                                .replaceAll('{6}','<button onclick="subirRespuesta('+objOrdenado[index].codRespuesta+')" style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-3 me-1" type="button"><i class="fa-solid fa-square-caret-up"></i></button>')   
+                                                .replaceAll('{7}','<button onclick="bajarRespuesta('+objOrdenado[index].codRespuesta+')" style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-1" type="button"><i class="fa-solid fa-square-caret-down"></i></button>')            
 
-                // Object.keys(JSON_.hilos).forEach(function(kk) {
-                //     if (JSON_.hilos[kk].codSubcategoria==subCode) {
-                //         let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
-                //                     .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
-                //                     .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
-                //                     .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[kk].codUsuario)
-                //         $('.subcategoria'+subCode).append(hilo_)
-                //     }
-                // })
+                        let respu_       
+                        if (JSON_.hilos[objOrdenado[index].codHilo].codUsuario == $('.codUsuarioFinal').val()) {
+                            respu_ = respuesta1_.replaceAll('{8}','<button onclick="cambiarSolucion('+objOrdenado[index].codRespuesta+')" style="padding: 0.5rem;" class="ui-button ui-widget ui-state-default ui-corner-all ms-3 me-3" type="button"><i class="fa-solid fa-check"></i> Solucion</button>')
+                        } else {
+                            respu_ = respuesta1_.replaceAll('{8}','')
+                        }            
+                        $('.contenedorHilos').append(respu_)                            
+                    }
+                })
             })
         }
     }
+
+        /*
+            ** Descripcion: Metodo que ordena los objetos respuesta, tal y como se le indica con los parametros de entrada
+            ** Entrada: propiedad del objeto por la que se va a ordenar
+            ** Salida: objeto ordenado
+        */
+        function ordenarRespuesta(kk) {
+            let o = {}
+            let o_ = {}
+            Object.keys(JSON_.respuestas).forEach(function(k) {
+                o[k] = JSON_.respuestas[k][kk]
+            })
+    
+            let o__ = Object.keys(o).sort(function(a,b){return o[b]-o[a];})
+            for (let i=0;i!=Object.keys(JSON_.respuestas).length;i++) {
+                o_[i] = JSON_.respuestas[o__[i]]
+            }
+            
+            return o_
+        }
 
     /*
         ** Descripcion: Metodo que carga el perfil de un usuario.
@@ -227,7 +315,7 @@ var UTILS__ = (function() {
             $('.contenedorPerfiles').ready(() => {
                 $('.nombrePerfil').html("Perfil de "+JSON_.usuarios[usuCode].nombre)
                 let permiso = JSON_.usuarios[usuCode].apellidos
-                if (permiso==null || permiso==0) {
+                if (permiso==null || permiso=="null" || permiso==0) {
                     permiso = 'Usuario'
                 } else if (permiso==1) {
                     permiso = 'Soporte'

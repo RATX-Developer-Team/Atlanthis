@@ -23,6 +23,14 @@
     margin-bottom: 20px;
 }
 
+.contendorRespuesta2 {
+    background-color: rgb(186, 247, 221);
+    padding: 20px 10px;
+    padding-bottom: 7px;
+    box-shadow: 2px 2px 1px rgb(136 136 136 / 9%);
+    margin-bottom: 20px;
+}
+
 .contenedorInfo ul li span {
     font-weight: bold !important;
     color: var(--colorPrincipal);

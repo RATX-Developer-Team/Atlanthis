@@ -20,36 +20,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet(urlPatterns={"/guardarNewHilo"}, asyncSupported=false)
-public class guardarNewHilo extends HttpServlet {
+@WebServlet(urlPatterns={"/guardarNewRespuesta"}, asyncSupported=false)
+public class guardarNewRespuesta extends HttpServlet {
     private JSONObject obj = new JSONObject();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+        try { 
             Utilidades utils_ = new Utilidades();
-            String tit = request.getParameter("tit");
             String con = request.getParameter("con").replace("\"", "\'");
-            String idSubcate = request.getParameter("idSubcate");
+            String idHilo = request.getParameter("idHilo");
             String idUsu = request.getParameter("idUsu");
-            if (tit!=null && con!=null && idSubcate!=null && idUsu!=null) {
-                Subcategorias subcate_ = utils_.getCtrSubcategorias().findSubcategorias(Integer.parseInt(idSubcate));
+            if (con!=null && idHilo!=null && idUsu!=null) {
+                Hilos hilo_ = utils_.getCtrHilos().findHilos(Integer.parseInt(idHilo));
                 Date fecha = new Date();
-                int hiloID = utils_.lastId_hilos()+1;
-                Hilos newHilo = new Hilos(
-                        hiloID,
-                        subcate_.getCodCategoria(),
-                        subcate_.getCodSubcategoria(),
-                        tit,
-                        fecha,
-                        0,
-                        0,
-                        Integer.parseInt(idUsu)
-                );
-                utils_.getCtrHilos().create(newHilo);
-                
                 Respuestas respuesta_ = new Respuestas(
                         null,
                         Integer.parseInt(idUsu),
-                        hiloID,
+                        hilo_.getCodHilo(),
                         fecha,
                         con,
                         0
@@ -63,7 +49,7 @@ public class guardarNewHilo extends HttpServlet {
             out.flush();
             obj = new JSONObject();
         } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
-            Logger.getLogger(guardarNewHilo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(guardarNewRespuesta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

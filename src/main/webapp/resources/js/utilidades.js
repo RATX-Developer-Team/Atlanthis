@@ -247,7 +247,7 @@ var UTILS__ = (function() {
                 })
 
                 let objOrdenado = ordenarRespuesta("votos")
-                //Respuestas que son solucion
+                //Respuestas que son normales ordenadas por votos
                 Object.keys(objOrdenado).forEach(function(index) {
                     if (objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == 0
                         || objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == null

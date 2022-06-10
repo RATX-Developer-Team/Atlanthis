@@ -4,6 +4,33 @@ $(function() {
     utils_.ocultarError()
     utils_.placeholderFix('register')
     
+    $.validator.addMethod("checkEmail",
+        (value, element) => {
+            let entra = true
+            $.getJSON('checkEmail', {
+                email: value
+            }, function (data) {
+                $.each(data, function(index,v) {
+                    v=="false"?entra=true:entra=false
+                })
+            })
+            return entra
+        }, "Ya existe un usuario con este email. Prueba con otro distinto"
+    )
+    
+    let emailName = $('.email_register').attr('name')
+
+    $('.formularioPrincipalRegister').validate({
+        rules: {
+            [emailName]: {
+                checkEmail: true
+            }
+        },
+        errorElement : 'div',
+        errorLabelContainer: '.errorTxt'
+    })
+
+
     PrimeFaces.locales['es'] = {
         closeText: 'Cerrar',
         prevText: 'Anterior',

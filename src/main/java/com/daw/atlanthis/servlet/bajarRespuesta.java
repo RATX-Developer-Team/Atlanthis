@@ -1,8 +1,6 @@
 package com.daw.atlanthis.servlet;
 
-import com.daw.atlanthis.DTO.Hilos;
 import com.daw.atlanthis.DTO.Respuestas;
-import com.daw.atlanthis.DTO.Subcategorias;
 import com.daw.atlanthis.utils.Utilidades;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -11,7 +9,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.NoSuchPaddingException;

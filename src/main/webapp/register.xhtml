@@ -12,6 +12,9 @@
         <title>Atlanthis | Foro líder de información en español</title>
         <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+        <h:outputScript name="js/lib/jquery.validate.min.js"/>
+        <h:outputScript name="js/lib/additional-methods.min.js"/>
+        <h:outputScript name="js/lib/localization/messages_es.min.js"/>
         <h:outputScript name="js/ipl.js"/>
         <h:outputScript name="js/utilidades.js"/>
         <h:outputScript name="js/register.js"/>
@@ -26,7 +29,8 @@
         <div class="overlay"></div>
         <div class="container-fluid h-100 d-flex flex-column justify-content-center align-items-center contenido">
             <p:link href="inicio.xhtml" styleClass="quitarDecoracion"><h1 class="h1 display-1 textoPrincipal">Atlanthis</h1></p:link>
-            <h:form styleClass="container d-flex flex-column align-items-center">
+            <h:form styleClass="container d-flex flex-column align-items-center formularioPrincipalRegister">
+                <div class="errorTxt"></div>
                 <div class="input-group mt-3 flex-nowrap w-inputs">
                     <span class="input-group-text campo" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
                     <h:inputText value="#{beanRegister.nombre}" styleClass="form-control campo name_register"/>

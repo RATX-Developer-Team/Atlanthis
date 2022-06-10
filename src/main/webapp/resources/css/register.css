@@ -8,6 +8,14 @@
     font-display: swap;
 }
 
+.errorTxt {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.534) !important;
+    color: #D5E7F2 !important;
+    border-radius: 4px !important;
+    padding: 10px;
+}
+
 * {
     overflow: hidden;
 }

@@ -114,6 +114,32 @@ var UTILS__ = (function() {
     }
 
     /*
+        ** Descripcion: Metodo que carga obteniendo un JSON la pagina de discusiones.
+        ** Entrada: / 
+        ** Salida: /
+    */
+    function cargaDiscusiones() {
+        if (listo) {
+            $('.contenedorDiscusiones').ready(() => {
+                let cate_ = categoriaIPL.replaceAll('{0}','Discusiones')
+                                        .replaceAll('{2}','dis')
+                $('.contenedorDiscusiones').append(cate_) 
+                Object.keys(JSON_.subcategorias).forEach(function(kk) {
+                    let subcate_ = subcategoriaIPL.replaceAll('{0}',JSON_.subcategorias[kk].titulo)
+                                .replaceAll('{1}','subcategoria.xhtml?codigoSubcategoria='+JSON_.subcategorias[kk].codSubcategoria)
+                                .replaceAll('{2}',JSON_.subcategorias[kk].descripcion)
+                                .replaceAll('{3}',JSON_.subcategorias[kk].nHilos)
+                                .replaceAll('{4}',JSON_.hilos[JSON_.subcategorias[kk].lastHilo].titulo)
+                                .replaceAll('{5}','hilo.xhtml?codigoHilo='+JSON_.subcategorias[kk].lastHilo)
+                                .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario].nombre)
+                                .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[JSON_.subcategorias[kk].lastHilo].codUsuario)
+                    $('.subcategoria'+'dis').append(subcate_)
+                })
+            })
+        }
+    }
+
+    /*
         ** Descripcion: Metodo que carga obteniendo un JSON la pagina de categorias.
         ** Entrada: / 
         ** Salida: /
@@ -171,10 +197,19 @@ var UTILS__ = (function() {
                 })
                 Object.keys(JSON_.hilos).forEach(function(kk) {
                     if (JSON_.hilos[kk].codSubcategoria==subCode && JSON_.hilos[kk].anclado == "null" || JSON_.hilos[kk].codSubcategoria==subCode && JSON_.hilos[kk].anclado == 0) {
-                        let hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
+                        let hilo_
+                        if (JSON_.hilos[kk].cerrado==1) {
+                            hilo_ = hilo3IPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
                                     .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
                                     .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
                                     .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[kk].codUsuario)
+                        } else {
+                            hilo_ = hiloIPL.replaceAll('{0}',JSON_.hilos[kk].titulo)
+                                .replaceAll('{1}','hilo.xhtml?codigoHilo='+JSON_.hilos[kk].codHilo)
+                                .replaceAll('{6}',JSON_.usuarios[JSON_.hilos[kk].codUsuario].nombre)
+                                .replaceAll('{7}','perfil.xhtml?codUsuario='+JSON_.hilos[kk].codUsuario)
+                        }
+                        
                         $('.subcategoria'+subCode).append(hilo_)
                     }
                 })
@@ -195,7 +230,7 @@ var UTILS__ = (function() {
                 $('.nombreSubcategoriaCarga').html('<a href="subcategoria.xhtml?codigoSubcategoria='+JSON_.hilos[hiloCode].codSubcategoria+'">'+JSON_.subcategorias[JSON_.hilos[hiloCode].codSubcategoria].titulo+'</a>')
                 $('.nombreHilo').html(JSON_.hilos[hiloCode].titulo)
                 let i_ = 0
-
+                let codPrimera = 0
                 //Primera respusta del hilo , con la que se creo
                 Object.keys(JSON_.respuestas).forEach(function(index) {
                     if (JSON_.respuestas[index].codHilo == hiloCode && i_ == 0) {
@@ -216,6 +251,7 @@ var UTILS__ = (function() {
                                                 .replaceAll('{5}','perfil.xhtml?codUsuario='+JSON_.respuestas[index].codUsuario)
                         $('.contenedorHilos').append(respuesta1_)
                         i_++
+                        codPrimera = JSON_.respuestas[index].codRespuesta
                     }
                 })
                 //Respuestas que son solucion
@@ -249,9 +285,9 @@ var UTILS__ = (function() {
                 let objOrdenado = ordenarRespuesta("votos")
                 //Respuestas que son normales ordenadas por votos
                 Object.keys(objOrdenado).forEach(function(index) {
-                    if (objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == 0
-                        || objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == null
-                        || objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == "null") {
+                    if (objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == 0 && codPrimera != objOrdenado[index].codRespuesta
+                        || objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == null && codPrimera != objOrdenado[index].codRespuesta
+                        || objOrdenado[index].codHilo == hiloCode && objOrdenado[index].solucion == "null" && codPrimera != objOrdenado[index].codRespuesta) {
                         let permiso = JSON_.usuarios[objOrdenado[index].codUsuario].permiso
                         if (permiso==null || permiso=="null" || permiso==0) {
                             permiso = 'Usuario'
@@ -314,7 +350,7 @@ var UTILS__ = (function() {
             let usuCode = parametro('codUsuario')
             $('.contenedorPerfiles').ready(() => {
                 $('.nombrePerfil').html("Perfil de "+JSON_.usuarios[usuCode].nombre)
-                let permiso = JSON_.usuarios[usuCode].apellidos
+                let permiso = JSON_.usuarios[usuCode].permiso
                 if (permiso==null || permiso=="null" || permiso==0) {
                     permiso = 'Usuario'
                 } else if (permiso==1) {
@@ -383,6 +419,7 @@ var UTILS__ = (function() {
         parametro:parametro,
         cargarPerfil:cargarPerfil,
         cargaHilos:cargaHilos,
-        cargaSubcategoria:cargaSubcategoria
+        cargaSubcategoria:cargaSubcategoria,
+        cargaDiscusiones:cargaDiscusiones
     }
 })()

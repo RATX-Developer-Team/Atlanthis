@@ -41,13 +41,24 @@ let hilo2IPL =   '<div class="subcategoria d-flex flex-row justify-content-betwe
                         '</div>'+
                         '</div>'
 
+let hilo3IPL =   '<div class="subcategoria d-flex flex-row justify-content-between">'+ 
+                        '<div class="d-flex flex-column">'+ 
+                            '<a href="{1}" aria-label="Dirigirse a la subcategoria {0}" class="enlaceSubcategoria"><h4 class="display-6 fs-4"><i class="fa-solid fa-lock"></i> {0}</h4></a>'+
+                            '<h5 class="display-6 fs-6">Ultima respuesta por <a href="{7}" aria-label="Dirigirse al perfil de {6}" class="enlaceHilo">{6}</a></h5>'+
+                        '</div>'+
+                        '<div class="d-flex flex-row">'+
+                        '</div>'+
+                        '</div>'
+
 // 0 imagen del usuarios, 1 nombre del usuario, 2 apellido del usuario, 3 fecha de nacimiento, 4 pais, 5 rango del usuario
 let perfilIPL = '<div class="container-fluid d-flex flex-row justify-content-start">'+
                     '<div class="contenedorFoto">'+
                         '<img id="j_idt23" src="/Atlanthis/faces/javax.faces.resource/img/{0}" class="img-responsive fotoPerfil me-2 me-sm-0 mb-1 mb-sm-0" alt="Foto de perfil" height="150"/>'+
+                        '<h4 class="center">{1}</h4>'+
+                        '<span class="center"><i class="fa-solid fa-user-shield"></i> {5}</span>'+
                     '</div>'+
                     '<div class="contenedorInfo">'+
-                        '<ul>'+
+                        '<ul class="ulPerfil">'+
                             '<li><span>Nombre completo:</span> {1} {2}</li>'+
                             '<li><span>Fecha de nacimiento:</span> {3}</li>'+
                             '<li><span>Pais:</span> {4}</li>'+

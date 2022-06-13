@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="./templates/template.xhtml">
+        <ui:define name="scripts">
+            <h:outputScript name="js/discusiones.js"/>
+        </ui:define>
+        <ui:define name="contenido">
+            <div class="container mt-3">
+                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item text-black"><a href="/Atlanthis/faces/index.xhtml" aria-label="Volver a la página principal"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                      <li class="breadcrumb-item activeB nombreCategoriaCarga" aria-current="page">Discusiones</li>
+                    </ol>
+                </nav>
+            </div>
+            <main class="container contenedorDiscusiones mt-3 mb-5">
+                
+            </main>
+        </ui:define>
+    </ui:composition>
+</html>
+

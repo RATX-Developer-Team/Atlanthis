@@ -6,6 +6,22 @@
     position: absolute !important;
 }
 
+.ulPerfil {
+    list-style-type: none;
+}
+
+.ulPerfil li {
+    background-color: #FFF;
+    padding: 20px !important;
+    margin-top: 5px;
+    box-shadow: 2px 2px 1px rgb(136 136 136 / 9%);
+}
+
+.center {
+    display: block;
+    text-align: center;
+}
+
 .contenedorFoto {
     padding-right: 30px;
     border-right: 1px solid gray;

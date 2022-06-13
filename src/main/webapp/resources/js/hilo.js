@@ -26,6 +26,12 @@ $(function() {
     utils_ = UTILS__
     utils_.cargaHilos()
 
+    $('.ocultarBotonCrear').ready(() => {
+        if (JSON_.hilos[utils_.parametro('codigoHilo')].cerrado==1) {
+            $('.ocultarBotonCrear').hide()
+        }
+    })
+
     $('.botonCrearRespuesta').on('click', () => {
         let contenido = $('.ql-editor').html()
         $.getJSON('guardarNewRespuesta', {

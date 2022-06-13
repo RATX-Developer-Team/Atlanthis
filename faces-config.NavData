@@ -5,12 +5,12 @@
         <Node id="miperfil.xhtml" x="627" y="23" zoom="true"/>
         <Node id="index.xhtml" x="21" y="23" zoom="true"/>
         <Node id="perfil.xhtml" x="298" y="347" zoom="true"/>
-        <Node id="categoria.xhtml" x="427" y="24" zoom="true"/>
         <Node id="inicio.xhtml" x="99" y="348" zoom="true"/>
+        <Node id="categoria.xhtml" x="427" y="24" zoom="true"/>
         <Node id="subcategoria.xhtml" x="300" y="477" zoom="true"/>
+        <Node id="fix.xhtml" x="1187" y="63" zoom="true"/>
         <Node id="email.html" x="1187" y="25" zoom="true"/>
         <Node id="register.xhtml" x="216" y="21" zoom="true"/>
-        <Node id="fix.xhtml" x="1187" y="63" zoom="true"/>
         <Node id="templates/template.xhtml" x="872" y="126" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

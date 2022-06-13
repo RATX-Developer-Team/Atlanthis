@@ -39,7 +39,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Hilos.findByNVisitas", query = "SELECT h FROM Hilos h WHERE h.nVisitas = :nVisitas"),
     @NamedQuery(name = "Hilos.findByNRespuestas", query = "SELECT h FROM Hilos h WHERE h.nRespuestas = :nRespuestas"),
     @NamedQuery(name = "Hilos.findByCodUsuario", query = "SELECT h FROM Hilos h WHERE h.codUsuario = :codUsuario"),
-    @NamedQuery(name = "Hilos.findByAnclado", query = "SELECT h FROM Hilos h WHERE h.anclado = :anclado")})
+    @NamedQuery(name = "Hilos.findByAnclado", query = "SELECT h FROM Hilos h WHERE h.anclado = :anclado"),
+    @NamedQuery(name = "Hilos.findByCerrado", query = "SELECT h FROM Hilos h WHERE h.cerrado = :cerrado")})
 public class Hilos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -74,8 +75,14 @@ public class Hilos implements Serializable {
     @NotNull
     @Column(name = "cod_usuario")
     private int codUsuario;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "anclado")
-    private Integer anclado;
+    private int anclado;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cerrado")
+    private int cerrado;
 
     public Hilos() {
     }
@@ -84,13 +91,15 @@ public class Hilos implements Serializable {
         this.codHilo = codHilo;
     }
 
-    public Hilos(Integer codHilo, String titulo, Date fechaPubli, int nVisitas, int nRespuestas, int codUsuario) {
+    public Hilos(Integer codHilo, String titulo, Date fechaPubli, int nVisitas, int nRespuestas, int codUsuario, int anclado, int cerrado) {
         this.codHilo = codHilo;
         this.titulo = titulo;
         this.fechaPubli = fechaPubli;
         this.nVisitas = nVisitas;
         this.nRespuestas = nRespuestas;
         this.codUsuario = codUsuario;
+        this.anclado = anclado;
+        this.cerrado = cerrado;
     }
     
     public Hilos(Integer codHilo,int codCategoria, int codSubcategoria, String titulo, Date fechaPubli, int nVisitas, int nRespuestas, int codUsuario) {
@@ -102,6 +111,8 @@ public class Hilos implements Serializable {
         this.nVisitas = nVisitas;
         this.nRespuestas = nRespuestas;
         this.codUsuario = codUsuario;
+        this.anclado = 0;
+        this.cerrado = 0;
     }
 
     public Integer getCodHilo() {
@@ -168,12 +179,20 @@ public class Hilos implements Serializable {
         this.codUsuario = codUsuario;
     }
 
-    public Integer getAnclado() {
+    public int getAnclado() {
         return anclado;
     }
 
-    public void setAnclado(Integer anclado) {
+    public void setAnclado(int anclado) {
         this.anclado = anclado;
+    }
+
+    public int getCerrado() {
+        return cerrado;
+    }
+
+    public void setCerrado(int cerrado) {
+        this.cerrado = cerrado;
     }
 
     @Override
@@ -215,10 +234,12 @@ public class Hilos implements Serializable {
                     ",\"nRespuestas\":\"" + nRespuestas + '\"' +
                     ",\"codUsuario\":\"" + codUsuario + '\"' +
                     ",\"anclado\":\"" + anclado + '\"' +
+                    ",\"cerrado\":\"" + cerrado + '\"' +
                     '}';
         } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
             Logger.getLogger(Hilos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "null";
-    }    
+    }   
+
 }

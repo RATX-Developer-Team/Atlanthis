@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Atlanthis | Foro líder de información en español</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+        <h:outputScript name="js/ipl.js"/>
+        <h:outputScript name="js/utilidades.js"/>
+        <ui:insert name="scripts">   
+        </ui:insert>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet name="css/admin.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/RATX-Developer-Team/Atlanthis/main/dise%C3%B1o/AtlanthisFavicon48.ico"/>
+    </h:head>
+    <h:body>
+        <div class="d-flex">
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion px-md-3 shadow" id="accordionSidebar">
+                <!-- Sidebar - Brand -->
+                <p:link class="sidebar-brand d-flex align-items-center justify-content-start nav-link active" href="index.xhtml">
+                    <p:graphicImage name="img/logo.png" class="img-responsive" height="50" alt="Logotipo de Foro Atlanthis"/>
+                    Administracion
+                </p:link>
+                <!-- Divider -->
+                <hr class="sidebar-divider"></hr>
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <p:link class="nav-link active" href="admin_princi.xhtml">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Estadísticas</span>
+                    </p:link>
+                </li>
+                <!-- Divider -->
+                    <hr class="sidebar-divider"></hr>
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Control Principal
+                    </div>
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item active">
+                        <p:link class="nav-link active" href="admin_princi.xhtml">
+                            <i class="fa-solid fa-newspaper"></i>
+                            <span>Respuestas</span>
+                        </p:link>
+                    </li>
+                <h:panelGroup layout="block" id="container" rendered="#{beanAdmin.user.permiso>1}">
+                    <li class="nav-item active">
+                        <p:link class="nav-link active" href="admin_princi.xhtml">
+                            <i class="fa-solid fa-copy"></i>
+                            <span>Hilos</span>
+                        </p:link>
+                    </li>
+                    <li class="nav-item active">
+                        <p:link class="nav-link active" href="admin_princi.xhtml">
+                            <i class="fa-regular fa-star"></i>
+                            <span>Categorias</span>
+                        </p:link>
+                    </li>
+                    <li class="nav-item active">
+                        <p:link class="nav-link active" href="admin_princi.xhtml">
+                            <i class="fa-solid fa-star"></i>
+                            <span>Subcategorias</span>
+                        </p:link>
+                    </li>
+                </h:panelGroup>
+                <h:panelGroup layout="block" id="container" rendered="#{beanAdmin.user.permiso==3}">
+                    <!-- Divider -->
+                    <hr class="sidebar-divider"></hr>
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Control Usuarios
+                    </div>
+                    <li class="nav-item active">
+                        <p:link class="nav-link active" href="admin_princi.xhtml">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Usuarios</span>
+                        </p:link>
+                    </li>
+                </h:panelGroup>
+            </ul>
+            <div id="content-wrapper" class="d-flex flex-column w-100">
+                <div id="content">
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow justify-content-end">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <div>
+                            <a class="nav-link " href="#">
+                                <i class="fa-solid fa-user-gear me-1"></i>
+                                <span class="mr-2 d-none d-lg-inline text-black small me-1"><h:outputText value="Moderador" rendered="#{beanAdmin.user.permiso==2}"/></span>
+                                <span class="mr-2 d-none d-lg-inline text-black small"><h:outputText value="Soporte" rendered="#{beanAdmin.user.permiso==1}"/></span>
+                                <span class="mr-2 d-none d-lg-inline text-black small"><h:outputText value="Administrador" rendered="#{beanAdmin.user.permiso==3}"/></span>
+                                <span class="mr-2 d-none d-lg-inline text-black small mx-1">|</span>
+                                <span class="mr-2 d-none d-lg-inline text-black small"><h:outputText value="#{beanAdmin.user.nombre}"/></span>
+                                <i class="fa-solid fa-screwdriver-wrench me-1"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+                <div>
+                    <ui:insert name="contenido">
+                        Contenido por defecto para que no quede en blanco...    
+                    </ui:insert>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>

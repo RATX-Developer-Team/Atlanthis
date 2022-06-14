@@ -21,6 +21,7 @@ public class beanLogin {
     private String error;
     
     private Usuarios usu;
+    private boolean admin;
     private String nomUsu;
     
     public beanLogin() {
@@ -32,6 +33,14 @@ public class beanLogin {
 
     public void setNomUsu(String nomUsu) {
         this.nomUsu = nomUsu;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     public String getError() {
@@ -83,6 +92,7 @@ public class beanLogin {
                         if (utils_.decrypt(v.getPassword()).equals(passwd_)) {
                             nomUsu=v.getNombre();
                             usu=v;
+                            admin = usu.getPermiso()!=null && usu.getPermiso()!=0;
                             return "true";
                         } else {
                             return error = "Contraseña Errónea";

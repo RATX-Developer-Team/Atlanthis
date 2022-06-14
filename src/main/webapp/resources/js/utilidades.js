@@ -21,26 +21,60 @@ let response = (url,auxobj,destino) => {
 }
 
 let getData = () => {
-    response("responseCategorias",{
-        categorias: 'todas'
-    }, 'categorias')
+    let localJSON = localStorage.getItem('JSONPrincipal')
+    let localDATE = localStorage.getItem('JSONDate')
+    if (localJSON == null || localDATE == null || localJSON == "" || localDATE == "" ) {
+        response("responseCategorias",{
+            categorias: 'todas'
+        }, 'categorias')
 
-    response("responseSubcategorias",{
-        subcategorias: 'todas'
-    }, 'subcategorias')
+        response("responseSubcategorias",{
+            subcategorias: 'todas'
+        }, 'subcategorias')
 
-    response("responseHilos",{
-        hilos: 'todos'
-    }, 'hilos')
+        response("responseHilos",{
+            hilos: 'todos'
+        }, 'hilos')
 
-    response("responseRespuestas",{
-        respuestas: 'todas'
-    }, 'respuestas')
+        response("responseRespuestas",{
+            respuestas: 'todas'
+        }, 'respuestas')
 
-    response("responseUsuarios",{
-        usuario: 'todos'
-    }, 'usuarios')
-    localStorage.setItem('JSONPrincipal', JSON.stringify(JSON_));
+        response("responseUsuarios",{
+            usuario: 'todos'
+        }, 'usuarios')
+        localStorage.setItem('JSONPrincipal', JSON.stringify(JSON_));
+        localStorage.setItem('JSONDate', new Date());
+    } else {
+        let now = new Date().getTime()
+        let old = Date.parse(localStorage.getItem('JSONDate'))
+        let diferencia = now-old
+        if (diferencia>2000) {
+            response("responseCategorias",{
+                categorias: 'todas'
+            }, 'categorias')
+    
+            response("responseSubcategorias",{
+                subcategorias: 'todas'
+            }, 'subcategorias')
+    
+            response("responseHilos",{
+                hilos: 'todos'
+            }, 'hilos')
+    
+            response("responseRespuestas",{
+                respuestas: 'todas'
+            }, 'respuestas')
+    
+            response("responseUsuarios",{
+                usuario: 'todos'
+            }, 'usuarios')
+            localStorage.setItem('JSONPrincipal', JSON.stringify(JSON_));
+            localStorage.setItem('JSONDate', new Date());
+        } else {
+            JSON_ = JSON.parse(localJSON)
+        }
+    }
     return true
 }
 let listo = getData();

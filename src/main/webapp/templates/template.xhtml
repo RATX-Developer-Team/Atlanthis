@@ -51,6 +51,7 @@
                                 <ul class="navbar-nav">
                                     <li class="nav-item d-flex flex-row align-items-center">
                                         <h:inputText style="display: none!important;" value="#{beanLogin.usu.codUsuario}" styleClass="codUsuarioFinal"/>
+                                        <p:link class="nav-link" href="admin_princi.xhtml" rendered="#{beanLogin.admin}"><i class="fa-solid fa-screwdriver-wrench"></i></p:link>
                                         <p:graphicImage name="img/#{beanLogin.usu.imagen}" class="img-responsive fotoPerfil me-2 me-sm-0 mb-1 mb-sm-0" height="40" alt="Foto de perfil"/>
                                         <p:link class="nav-link" href="miperfil.xhtml">#{beanLogin.usu.nombre}</p:link>
                                         <h:form styleClass="ms-1 ms-sm-0" style="display: inline;">
@@ -58,10 +59,9 @@
                                         </h:form>
                                     </li>
                                 </ul>
-                                <form class="d-flex flex-row">
-                                        <input class="form-control me-2 mr-0 campo" type="Busqueda" placeholder="Busqueda"
-                                            aria-label="Busqueda"/>
-                                        <button class="btn btn-outline-personalizado m-0" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <form class="d-flex flex-row" action="buscar.xhtml">
+                                    <input class="form-control me-2 mr-0 campo" type="Busqueda" placeholder="Busqueda" aria-label="Busqueda" name="buscar"/>
+                                    <button class="btn btn-outline-personalizado m-0" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </form>
                             </div>
                         </div>

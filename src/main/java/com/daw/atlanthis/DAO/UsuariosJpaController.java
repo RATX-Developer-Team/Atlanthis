@@ -136,7 +136,7 @@ public class UsuariosJpaController implements Serializable {
     
     public Usuarios findById_(int c){
         EntityManager em = getEntityManager();
-        TypedQuery query=em.createNamedQuery("Usuario.findByCodUsuario", Usuarios.class);
+        TypedQuery query=em.createNamedQuery("Usuarios.findByCodUsuario", Usuarios.class);
         query.setParameter("codUsuario", c);
         List<Usuarios> x = query.getResultList();
         Usuarios user_ = null;

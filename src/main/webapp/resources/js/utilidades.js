@@ -432,6 +432,40 @@ var UTILS__ = (function() {
         $('input').prop('required',Config.globalInputsRequired);
     }
 
+    function createAdminStatic() {
+        if (listo) {
+            let ar_ = []
+            let i = 0
+            Object.keys(JSON_.respuestas).forEach(function(k) {
+                ar_[i] = [JSON_.hilos[JSON_.respuestas[k].codHilo].titulo,parseInt(JSON_.respuestas[k].codHilo, 10)]
+                i++
+            })
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Titulo Hilo');
+                data.addColumn('number', 'Respuestas');
+                data.addRows(ar_)
+                var options = {'title': 'Hilos con mas Respuestas',
+                    colors: ['#0068A3', '#038c8c'],
+                    'width': 800,
+                    'curveType': 'function',
+                    'hAxis': {
+                        title: 'Titulos'
+                    },
+                    'vAxis': {
+                        title: 'Hilos con mas respuestas'
+                    },
+                    'height': 500};
+                var chart = new google.visualization.LineChart(document.getElementById('char1'));
+                var chart2 = new google.visualization.PieChart(document.getElementById('char2'));
+                chart.draw(data, options);
+                chart2.draw(data, options);
+            }
+        }
+    }
+
     /*
         ** Descripcion: Metodo que oculta la caja del mensaje de error en el login cuando este vacio.
         ** Entrada: /
@@ -454,6 +488,7 @@ var UTILS__ = (function() {
         cargarPerfil:cargarPerfil,
         cargaHilos:cargaHilos,
         cargaSubcategoria:cargaSubcategoria,
+        createAdminStatic:createAdminStatic,
         cargaDiscusiones:cargaDiscusiones
     }
 })()

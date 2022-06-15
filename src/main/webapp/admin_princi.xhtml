@@ -6,10 +6,13 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="./templates/template_admin.xhtml">
         <ui:define name="scripts">
+            <script src="https://www.gstatic.com/charts/loader.js"></script>
             <h:outputScript name="js/admin_princi.js"/>
         </ui:define>
         <ui:define name="contenido">
-            <header class="align-self-center fs-1 text-center fw-bold">Últimos 10 artículos más visitados</header>
+            <header class="align-self-center fs-1 text-center fw-bold">Hilos mas activos.</header>
+            <div id="char1"></div>
+            <div id="char2"></div>
         </ui:define>
     </ui:composition>
 </html>

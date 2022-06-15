@@ -10,6 +10,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Atlanthis | Foro líder de información en español</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"/>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
         <h:outputScript name="js/ipl.js"/>
         <h:outputScript name="js/utilidades.js"/>
         <ui:insert name="scripts">   
@@ -46,12 +48,12 @@
                     </div>
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item active">
-                        <p:link class="nav-link active" href="admin_princi.xhtml">
+                        <p:link class="nav-link active" href="admin_respu.xhtml">
                             <i class="fa-solid fa-newspaper"></i>
                             <span>Respuestas</span>
                         </p:link>
                     </li>
-                <h:panelGroup layout="block" id="container" rendered="#{beanAdmin.user.permiso>1}">
+                <h:panelGroup layout="block" id="container1" rendered="#{beanAdmin.user.permiso>1}">
                     <li class="nav-item active">
                         <p:link class="nav-link active" href="admin_princi.xhtml">
                             <i class="fa-solid fa-copy"></i>
@@ -71,7 +73,7 @@
                         </p:link>
                     </li>
                 </h:panelGroup>
-                <h:panelGroup layout="block" id="container" rendered="#{beanAdmin.user.permiso==3}">
+                <h:panelGroup layout="block" id="container2" rendered="#{beanAdmin.user.permiso==3}">
                     <!-- Divider -->
                     <hr class="sidebar-divider"></hr>
                     <!-- Heading -->

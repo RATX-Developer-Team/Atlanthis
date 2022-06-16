@@ -25,7 +25,10 @@ $(function() {
     console.clear()
     utils_ = UTILS__
     utils_.cargaHilos()
-
+    if (utils_.parametro('codigoHilo')==0) {
+        window.location.href = "404.xhtml";
+    }
+    
     $('.ocultarBotonCrear').ready(() => {
         if (JSON_.hilos[utils_.parametro('codigoHilo')].cerrado==1) {
             $('.ocultarBotonCrear').hide()

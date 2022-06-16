@@ -10,15 +10,15 @@
             <h:outputScript name="js/admin.js"/>
         </ui:define>
         <ui:define name="contenido">
-            <div class="align-self-center fs-1 text-center fw-bold">Control de Respuestas</div>
+            <div class="align-self-center fs-1 text-center fw-bold">Control de Hilos</div>
             <div class="card">
             <h:form>
-                <h:dataTable id="tablaRespuestasAdmin" styleClass="tablaPlugin" value="#{beanAdmin.ctrRespu()}" var="v" binding="#{beanAdmin.tablaRespuestas}">
+                <h:dataTable styleClass="tablaPlugin" value="#{beanAdmin.ctrHilos()}" var="v" binding="#{beanAdmin.tablaHilos}">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="ID"/>
                         </f:facet>
-                        <h:outputText value="#{v.codRespuesta}"/>
+                        <h:outputText value="#{v.codHilo}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -28,24 +28,28 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Cod.Hilo"/>
+                            <h:outputText value="F.Creacion"/>
                         </f:facet>
-                        <h:outputText value="#{v.codHilo}"/>
+                        <h:outputText value="#{v.fechaPubli}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Votos"/>
+                            <h:outputText value="Cerrado"/>
                         </f:facet>
-                          <h:outputText value="#{v.votos}"/>
+                        <h:outputText value="#{beanAdmin.respuSolu(v.cerrado)}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Solucion"/>
+                            <h:outputText value="Anclado"/>
                         </f:facet>
-                        <h:outputText value="#{beanAdmin.respuSolu(v.solucion)}"/>
+                        <h:outputText value="#{beanAdmin.respuSolu(v.anclado)}"/>
                     </h:column>
                     <h:column>
-                        <h:commandButton styleClass="btn btn-danger botonEliminarRespu" value="Eliminar" actionListener="#{beanAdmin.eliminarRespu()}"/>
+                        <h:commandButton styleClass="btn btn-danger botonEliminarRespu" value="Eliminar" actionListener="#{beanAdmin.eliminarHilos()}"/>
+                        <h:commandButton styleClass="btn btn-warning botonEliminarRespu ms-2 me-2" value="Cerrar" actionListener="#{beanAdmin.cerrarHilos()}"/>
+                        <h:commandButton styleClass="btn btn-primary botonEliminarRespu" value="Anclar" actionListener="#{beanAdmin.anclarHilos()}"/>
                     </h:column>
                 </h:dataTable>
             </h:form>

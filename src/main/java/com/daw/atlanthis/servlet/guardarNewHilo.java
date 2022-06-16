@@ -33,9 +33,8 @@ public class guardarNewHilo extends HttpServlet {
             if (tit!=null && con!=null && idSubcate!=null && idUsu!=null) {
                 Subcategorias subcate_ = utils_.getCtrSubcategorias().findSubcategorias(Integer.parseInt(idSubcate));
                 Date fecha = new Date();
-                int hiloID = utils_.lastId_hilos()+1;
                 Hilos newHilo = new Hilos(
-                        hiloID,
+                        null,
                         subcate_.getCodCategoria(),
                         subcate_.getCodSubcategoria(),
                         tit,
@@ -49,7 +48,7 @@ public class guardarNewHilo extends HttpServlet {
                 Respuestas respuesta_ = new Respuestas(
                         null,
                         Integer.parseInt(idUsu),
-                        hiloID,
+                        newHilo.getCodHilo(),
                         fecha,
                         con,
                         0

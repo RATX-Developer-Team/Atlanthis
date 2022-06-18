@@ -13,7 +13,7 @@
             <div class="align-self-center fs-1 text-center fw-bold">Control de Usuarios</div>
             <div class="card">
             <h:form>
-                <h:commandButton styleClass="btn btn-success mb-2 mt-1" value="Lista emails (PDF)" actionListener="#{beanAdmin.crearPDFusu()}"/>
+                <p:commandButton styleClass="btn btn-success mb-2 mt-1" value="Lista emails (PDF)" ajax="false" actionListener="#{beanAdmin.crearPDFusu()}"/>
                 <h:dataTable styleClass="tablaPlugin" value="#{beanAdmin.ctrUsuarios()}" var="v" binding="#{beanAdmin.tablaUsuarios}">
                     <h:column>
                         <f:facet name="header">

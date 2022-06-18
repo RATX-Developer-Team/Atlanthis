@@ -57,6 +57,13 @@
             <artifactId>primefaces</artifactId>
             <version>11.0.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.wicket/wicket -->
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket</artifactId>
+            <version>9.10.0</version>
+            <type>pom</type>
+        </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>

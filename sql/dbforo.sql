@@ -23,14 +23,13 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `descripcion` varchar(255) NOT NULL,
   `anclado` int(11) DEFAULT 0,
   PRIMARY KEY (`cod_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbforo.categorias: ~2 rows (approximately)
+-- Dumping data for table dbforo.categorias: ~3 rows (approximately)
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` (`cod_categoria`, `titulo`, `descripcion`, `anclado`) VALUES
 	(1, 'Cocina', 'prueba', 0),
-	(2, 'Motor', 'prueba', 0),
-	(3, 'Tecnologia', 'prueba', 0);
+	(2, 'Motor', 'prueba', 0);
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
 -- Dumping structure for table dbforo.hilos
@@ -43,28 +42,19 @@ CREATE TABLE IF NOT EXISTS `hilos` (
   `n_visitas` int(11) NOT NULL DEFAULT 0,
   `n_respuestas` int(11) NOT NULL DEFAULT 0,
   `cod_usuario` int(11) NOT NULL DEFAULT 0,
-  `anclado` int(11) DEFAULT 0,
+  `anclado` int(11) NOT NULL DEFAULT 0,
+  `cerrado` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`cod_hilo`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbforo.hilos: ~13 rows (approximately)
+-- Dumping data for table dbforo.hilos: ~5 rows (approximately)
 /*!40000 ALTER TABLE `hilos` DISABLE KEYS */;
-INSERT INTO `hilos` (`cod_hilo`, `cod_categoria`, `cod_subcategoria`, `titulo`, `fecha_publi`, `n_visitas`, `n_respuestas`, `cod_usuario`, `anclado`) VALUES
-	(0, 0, 0, 'No existen hilos', '0000-00-00', 0, 0, 1, 0),
-	(1, 1, 1, 'gg1', '0000-00-00', 0, 0, 1, 1),
-	(2, 1, 2, 'gg', '0000-00-00', 0, 0, 1, 0),
-	(3, 1, 2, 'gg', '0000-00-00', 0, 0, 1, 0),
-	(4, 1, 1, 'gg', '0000-00-00', 0, 0, 1, 0),
-	(5, 1, 2, 'gg', '0000-00-00', 0, 0, 1, 0),
-	(7, 1, 1, 'ad1', '2022-06-03', 0, 0, 2, NULL),
-	(8, 1, 1, 'ad1', '2022-06-03', 0, 0, 2, NULL),
-	(9, 1, 1, 'ad2', '2022-06-03', 0, 0, 2, NULL),
-	(10, 1, 1, 'ad3', '2022-06-03', 0, 0, 2, NULL),
-	(11, 1, 1, 'adad1q', '2022-06-03', 0, 0, 2, NULL),
-	(12, 1, 1, 'los xungito', '2022-06-03', 0, 0, 2, NULL),
-	(13, 1, 1, 'prueba', '2022-06-09', 0, 0, 2, NULL),
-	(14, 1, 1, 'prueba titulo', '2022-06-09', 0, 0, 2, NULL),
-	(15, 1, 1, 'prueba titulo2', '2022-06-09', 0, 0, 2, NULL);
+INSERT INTO `hilos` (`cod_hilo`, `cod_categoria`, `cod_subcategoria`, `titulo`, `fecha_publi`, `n_visitas`, `n_respuestas`, `cod_usuario`, `anclado`, `cerrado`) VALUES
+	(0, 0, 0, 'No existen hilos', '0000-00-00', 0, 0, 1, 0, 1),
+	(1, 1, 1, 'Mousses de chocolate', '2022-06-16', 0, 0, 2, 0, 0),
+	(2, 1, 1, 'Flan de turrón', '2022-06-16', 0, 0, 2, 0, 1),
+	(3, 1, 1, 'Cómo hacer fresas escabechadas', '2022-06-16', 0, 0, 2, 1, 0),
+	(4, 1, 2, 'Prueba de tema de otro usuario', '2022-06-16', 0, 0, 1, 0, 0);
 /*!40000 ALTER TABLE `hilos` ENABLE KEYS */;
 
 -- Dumping structure for table dbforo.newsletter
@@ -88,24 +78,21 @@ CREATE TABLE IF NOT EXISTS `respuestas` (
   `votos` int(11) NOT NULL DEFAULT 0,
   `solucion` int(11) DEFAULT 0,
   PRIMARY KEY (`cod_respuesta`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbforo.respuestas: ~7 rows (approximately)
+-- Dumping data for table dbforo.respuestas: ~10 rows (approximately)
 /*!40000 ALTER TABLE `respuestas` DISABLE KEYS */;
 INSERT INTO `respuestas` (`cod_respuesta`, `cod_usuario`, `cod_hilo`, `fecha_public`, `contenido`, `votos`, `solucion`) VALUES
-	(1, 2, 6, '2022-06-03', '<p>ad12</p>', 0, NULL),
-	(2, 2, 8, '2022-06-03', '<p>ad12</p>', 0, NULL),
-	(3, 2, 9, '2022-06-03', '<p>ad4</p>', 0, NULL),
-	(4, 2, 10, '2022-06-03', '<p>ad3</p>', 0, NULL),
-	(5, 2, 11, '2022-06-03', '<p>adad</p>', 0, NULL),
-	(6, 2, 12, '2022-06-03', '<ul><li>aprueb<strong>adba d ada</strong></li></ul>', 0, NULL),
-	(8, 2, 15, '2022-06-09', '<p><span style=\'color: rgb(0, 0, 0);\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque consectetur eros a diam vestibulum, lacinia pharetra neque lobortis. Curabitur nisi velit, ultrices vel felis quis, semper euismod dui. Praesent vitae faucibus libero, ac auctor odio. Integer ac ante quis nisl dictum ullamcorper in dapibus nulla. </span><em style=\'color: rgb(0, 0, 0);\'>Aenean arcu est, vestibulum</em><span style=\'color: rgb(0, 0, 0);\'> ac lacinia sed, porttitor quis tellus. Integer in massa ex. Nunc bibendum finibus dapibus. In eget turpis iaculis, molestie libero ac, vehicula magna. Nunc porta sem id neque semper, quis scelerisque purus tempus. Nam fermentum sapien tellus, eu varius felis dapibus porttitor. Quisque sed ante ut arcu fringilla dapibus. Fusce eu nibh tellus. Ut vel dolor convallis ipsum luctus vestibulum. Aliquam ut massa ut lorem feugiat laoreet sit amet vel nisl. Aenean sem nisl, auctor nec velit et, fringilla aliquam tortor.</span></p>', 0, NULL),
-	(9, 2, 15, '2022-06-09', '<p><span style=\'color: rgb(0, 0, 0);\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque consectetur eros a diam vestibulum, lacinia pharetra neque lobortis. Curabitur nisi velit, ultrices vel felis quis, semper euismod dui. Praesent vitae faucibus libero, ac auctor odio. Integer ac ante quis nisl dictum ullamcorper in dapibus nulla. </span><em style=\'color: rgb(0, 0, 0);\'>Aenean arcu est, vestibulum</em><span style=\'color: rgb(0, 0, 0);\'> ac lacinia sed, porttitor quis tellus. Integer in massa ex. Nunc bibendum finibus dapibus. In eget turpis iaculis, molestie libero ac, vehicula magna. Nunc porta sem id neque semper, quis scelerisque purus tempus. Nam fermentum sapien tellus, eu varius felis dapibus porttitor. Quisque sed ante ut arcu fringilla dapibus. Fusce eu nibh tellus. Ut vel dolor convallis ipsum luctus vestibulum. Aliquam ut massa ut lorem feugiat laoreet sit amet vel nisl. Aenean sem nisl, auctor nec velit et, fringilla aliquam tortor.</span></p>', 0, 0),
-	(10, 2, 15, '2022-06-09', '1 voto', 1, 0),
-	(11, 2, 15, '2022-06-09', '2 voto', 0, 0),
-	(12, 2, 15, '2022-06-09', '-1 voto', 3, 0),
-	(13, 2, 15, '2022-06-09', '0 voto', 0, 0),
-	(14, 1, 15, '2022-06-09', '<p class=\'ql-align-center\'><strong>Prueba de respuesta creada desde cliente</strong></p>', 1, 1);
+	(1, 2, 1, '2022-06-16', '<p><span style=\'color: rgb(51, 51, 51);\'>Fácil no, lo siguiente. Eso es lo que son las mousses. Postres que no tardan nada en estar listos y que tienen gran acogida entre los comensales. Esa textura etérea que le otorga la clara montada a punto de nieve las hace irresistibles y nos deja con una sensación de placer tremenda, pero&nbsp;</span><strong style=\'color: rgb(51, 51, 51);\'>sin la pesadez de otros postres</strong><span style=\'color: rgb(51, 51, 51);\'>. Aunque los reyes son los de chocolate, también se puede jugar con frutas para adaptarlos al gusto de todos.</span></p>', 0, NULL),
+	(2, 2, 2, '2022-06-16', '<p><span style=\'color: rgb(51, 51, 51);\'>Si se nos acumula el turrón de Jijona o blando en casa y no somos muy de devorarlo tal cual, una buena forma de aprovecharlo es cocinando con él. Es un ingrediente fabuloso de&nbsp;</span><a href=\'https://www.directoalpaladar.com/postres/biscuit-turron-salsa-frutos-rojos-receta-muy-facil-para-postre-estas-navidades\' rel=\'noopener noreferrer\' target=\'_blank\' style=\'color: rgb(177, 0, 57);\'>dulces deliciosos</a><span style=\'color: rgb(51, 51, 51);\'>, y este&nbsp;</span><strong style=\'color: rgb(51, 51, 51);\'>flan de turrón sin horno y sin huevo</strong><span style=\'color: rgb(51, 51, 51);\'>&nbsp;además nos puede solucionar el postre en un menú de fiesta.</span></p>', 0, NULL),
+	(3, 2, 3, '2022-06-16', '<p><span style=\'color: rgb(51, 51, 51);\'>Fácil no, lo siguiente. Eso es lo que son las mousses. Postres que no tardan nada en estar listos y que tienen gran acogida entre los comensales. Esa textura etérea que le otorga la clara montada a punto de nieve las hace irresistibles y nos deja con una sensación de placer tremenda, pero&nbsp;</span><strong style=\'color: rgb(51, 51, 51);\'>sin la pesadez de otros postres</strong><span style=\'color: rgb(51, 51, 51);\'>. Aunque los reyes son los de chocolate, también se puede jugar con frutas para adaptarlos al gusto de todos.</span></p>', 0, NULL),
+	(4, 2, 3, '2022-06-16', '<p>Prueba de Respuesta con 1 voto</p>', 1, NULL),
+	(5, 2, 3, '2022-06-16', '<p>Prueba de respuesta con 2 votos</p>', 2, NULL),
+	(6, 2, 3, '2022-06-16', '<p>Prueba de respuesta marcada como solucion</p>', 0, 1),
+	(7, 1, 4, '2022-06-16', '<p><span style=\'color: rgb(0, 0, 0);\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nunc quam, varius eu ante sit amet, dignissim fermentum mi. Vestibulum a vestibulum tortor, in molestie odio. Integer vel augue interdum, fermentum eros sit amet, lobortis diam. Aliquam viverra enim quis ante vestibulum, nec pulvinar sem molestie. Ut convallis tellus eu lorem sollicitudin vehicula. Nunc ut tempor ante. Nam tempor, augue ut faucibus lobortis, elit augue tincidunt augue, eget dapibus lorem urna eu magna. Vivamus cursus, nisi in vulputate interdum, elit sem sollicitudin lorem, eget feugiat urna elit et felis. Nullam vel massa vel massa rhoncus consequat sit amet in sem.</span></p>', 0, NULL),
+	(8, 1, 4, '2022-06-16', '<p>Prueba de respuesta por otro usuario</p>', 0, NULL),
+	(9, 1, 4, '2022-06-16', '<p>Prueba de respuesta 2</p>', 0, NULL),
+	(10, 1, 4, '2022-06-16', '<p>prueba de solucion</p>', 0, 1);
 /*!40000 ALTER TABLE `respuestas` ENABLE KEYS */;
 
 -- Dumping structure for table dbforo.subcategorias
@@ -116,14 +103,15 @@ CREATE TABLE IF NOT EXISTS `subcategorias` (
   `descripcion` varchar(255) NOT NULL,
   `anclado` int(11) DEFAULT 0,
   PRIMARY KEY (`cod_subcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbforo.subcategorias: ~2 rows (approximately)
+-- Dumping data for table dbforo.subcategorias: ~4 rows (approximately)
 /*!40000 ALTER TABLE `subcategorias` DISABLE KEYS */;
 INSERT INTO `subcategorias` (`cod_subcategoria`, `cod_categoria`, `titulo`, `descripcion`, `anclado`) VALUES
-	(1, 1, 'subcate1', 'test', 0),
-	(2, 1, 'subcate2', 'test', 1),
-	(3, 2, 'subcate21', 'test', 1);
+	(1, 1, 'Postres', 'Subcategoria de postres', 0),
+	(2, 1, 'Entrantes', 'Subcategoria de platos entrantes', 1),
+	(3, 2, 'Formula 1', 'Subcategoria dedicada a la F1', NULL),
+	(4, 3, 'Procesadores', 'Subcategoria dedicada a procesadores', 0);
 /*!40000 ALTER TABLE `subcategorias` ENABLE KEYS */;
 
 -- Dumping structure for table dbforo.usuarios
@@ -139,13 +127,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `permiso` int(11) DEFAULT 0,
   PRIMARY KEY (`email`),
   UNIQUE KEY `cod_usuario` (`cod_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbforo.usuarios: ~1 rows (approximately)
+-- Dumping data for table dbforo.usuarios: ~2 rows (approximately)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`email`, `cod_usuario`, `fecha_nacimiento`, `pais`, `nombre`, `apellidos`, `password`, `imagen`, `permiso`) VALUES
-	('admin@atlanthis.com', 1, '1996-05-08', 'ESP', 'Administrador', '', 'YAgIFasDMz4=', 'default.png', 3),
-	('alexyanamusicpro@gmail.com', 2, '1996-05-08', 'spain', 'Alfonso', 'Melasuda', 'lYMz0T9NhznTp5ioLIr+cg==', 'default.png', NULL);
+	('admin@atlanthis.com', 1, '2026-06-01', 'España', 'Atlanthis', '', 'YAgIFasDMz4=', 'default.png', 3),
+	('alex-zam-olv@hotmail.com', 2, '2012-06-06', 'España', 'Alejandro', 'Mendoza Zambrana', 'lYMz0T9NhznTp5ioLIr+cg==', 'default.png', 0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

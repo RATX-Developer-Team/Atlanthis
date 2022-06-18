@@ -12,7 +12,7 @@ let subcategoriaIPL =   '<div class="subcategoria d-flex flex-row justify-conten
                             '<h5 class="display-6 fs-6">{2}</h5>'+
                         '</div>'+
                         '<div class="d-flex flex-row">'+
-                            '<div class="d-flex align-items-center flex-column me-5">'+
+                            '<div class="d-none d-sm-flex align-items-center flex-column me-5">'+
                                 '<h4 class="display-6 fs-4">{3}</h4>'+
                                 '<h5 class="display-6 fs-5">Temas</h5>'+
                             '</div>'+

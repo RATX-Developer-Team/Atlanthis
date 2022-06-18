@@ -7,29 +7,19 @@ import com.daw.atlanthis.DTO.Respuestas;
 import com.daw.atlanthis.DTO.Subcategorias;
 import com.daw.atlanthis.DTO.Usuarios;
 import com.daw.atlanthis.utils.Utilidades;
-import com.itextpdf.text.Anchor;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.ListItem;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +31,9 @@ import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import static javax.mail.Part.ATTACHMENT;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 @ManagedBean(name="beanAdmin")
 @SessionScoped 
@@ -406,96 +399,35 @@ public class beanAdmin {
     
     public void crearPDFusu() {
         try {
-            Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("usuarios.pdf"));
+            Utilidades utils_ = new Utilidades();
+            Document document = new Document(PageSize.A4);
             
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            ExternalContext externalContext = facesContext.getExternalContext();
+            HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+            response.setContentType("application/pdf");
+            
+            response.setHeader("Content-Disposition", "attachment; filename=usuarios.pdf");
+            PdfWriter pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);
             document.open();
-            addMetaData(document);
-            addTitlePage(document);
-            addContent(document);
+            
+            Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+                    Font.BOLD);
+            for(Usuarios x:utils_.getCtrUsuarios().findUsuariosEntities()) {
+                document.add(new Paragraph(x.getEmail(), catFont));
+            }
             document.close();
             
-            FacesContext fc = FacesContext.getCurrentInstance();
-            ExternalContext ec = fc.getExternalContext();
-            ec.responseReset();
-            ec.setResponseContentType("application/pdf");
-            ec.setResponseHeader("Content-Disposition", "attachment; filename=usuarios.pdf");
-            OutputStream output = ec.getResponseOutputStream();
-            fc.responseComplete();
-            
-        } catch (FileNotFoundException | DocumentException | UnsupportedEncodingException ex) {
+            response.setContentLength(byteArrayOutputStream.size());
+            ServletOutputStream servletOutputStream = response.getOutputStream();
+            byteArrayOutputStream.writeTo(servletOutputStream);
+            byteArrayOutputStream.flush();
+            FacesContext.getCurrentInstance().responseComplete();
+        } catch (DocumentException | InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
             Logger.getLogger(beanAdmin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(beanAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    private static void addMetaData(Document document) {
-        document.addTitle("PDF Usuarios");
-        document.addSubject("Usando iText");
-        document.addKeywords("Java, PDF, iText");
-        document.addAuthor("Alejandro Mendoza");
-        document.addCreator("Alejandro Mendoza");
-    }
-    
-    private static void addEmptyLine(Paragraph paragraph, int number) {
-        for (int i = 0; i < number; i++) {
-            paragraph.add(new Paragraph(" "));
-        }
-    }
-    
-     private static void addContent(Document document) throws DocumentException {
-        try {
-            Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
-                    Font.BOLD);
-            Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-                    Font.BOLD);
-            Anchor anchor = new Anchor("Emails", catFont);
-            anchor.setName("Emails");
-            Utilidades utils_ = new Utilidades();
-            // Second parameter is the number of the chapter
-            Chapter catPart = new Chapter(new Paragraph(anchor), 1);
-            
-            Paragraph subPara = new Paragraph("Lista emails", smallBold);
-            Section subCatPart = catPart.addSection(subPara);
-            
-            for(Usuarios x:utils_.getCtrUsuarios().findUsuariosEntities()) {
-                subCatPart.add(new Paragraph(x.getEmail()));
-            }
-            
-            Paragraph paragraph = new Paragraph();
-            addEmptyLine(paragraph, 5);
-            subCatPart.add(paragraph);
-            // now add all this to the document
-            document.add(catPart);
-        } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | UnsupportedEncodingException ex) {
-            Logger.getLogger(beanAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    private static void addTitlePage(Document document) throws DocumentException {
-        Paragraph preface = new Paragraph();
-        Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
-        Font.BOLD);
-        Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-        Font.BOLD);
-        addEmptyLine(preface, 1);
-        preface.add(new Paragraph("Lista de emails", catFont));
-
-        addEmptyLine(preface, 1);
-        preface.add(new Paragraph(
-                "Generado a: " + new Date(),
-                smallBold));
-        addEmptyLine(preface, 3);
-        preface.add(new Paragraph(
-                "Lista emails de los usuarios ",
-                smallBold));
-        addEmptyLine(preface, 8);
-        document.add(preface);
-        // Start a new page
-        document.newPage();
-    }
-    
-    
+    }  
 }
